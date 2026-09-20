@@ -49,12 +49,15 @@ jobs:
         shell: bash
         run: |
           feed_root="${RUNNER_TEMP}/kdesign-feed"
-          package_root="${feed_root}/themes/luci-theme-kdesign"
+          package_root="${feed_root}/luci-theme-kdesign"
           mkdir -p "${package_root}"
           git archive --format=tar HEAD | tar -xf - -C "${package_root}"
+          sed -i 's#include ../../luci.mk#include ../luci.mk#' "${package_root}/Makefile"
           curl --fail --silent --show-error --location \
             https://raw.githubusercontent.com/openwrt/luci/0aa55c7bd2556d96147e1974a0d94976142d724b/luci.mk \
             --output "${feed_root}/luci.mk"
+          test -s "${package_root}/Makefile"
+          test -s "${feed_root}/luci.mk"
 
       # Kwrt 25.12 on the target router still uses opkg. The final OpenWrt
       # 24.10 SDK produces IPK packages and keeps LuCI .ut templates as source,

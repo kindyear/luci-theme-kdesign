@@ -22,4 +22,4 @@ define Package/luci-theme-kdesign/postrm
 }
 endef
 
-include $(TOPDIR)/feeds/luci/luci.mk
+include ../../luci.mk

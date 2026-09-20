@@ -60,7 +60,7 @@ The archive is written to `dist/luci-theme-kdesign-source.tar.gz`. It does not c
 
 ## OpenWrt package build
 
-Place this directory in an OpenWrt package or feed path, then select and build `luci-theme-kdesign` through the normal OpenWrt build system. The `Makefile` uses the build tree's LuCI feed rules and deliberately disables LuCI's second CSS/JS minification pass.
+Place this directory at `feeds/luci/themes/luci-theme-kdesign` or another LuCI feed theme path, then select and build `luci-theme-kdesign` through the normal OpenWrt build system. `Makefile` includes `../../luci.mk` and deliberately disables LuCI's second CSS/JS minification pass.
 
 ### GitHub Actions build for Kwrt x86/64
 

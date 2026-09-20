@@ -45,6 +45,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Prepare LuCI feed layout
+        shell: bash
+        run: |
+          feed_root="${RUNNER_TEMP}/kdesign-feed"
+          package_root="${feed_root}/themes/luci-theme-kdesign"
+          mkdir -p "${package_root}"
+          git archive --format=tar HEAD | tar -xf - -C "${package_root}"
+          curl --fail --silent --show-error --location \
+            https://raw.githubusercontent.com/openwrt/luci/0aa55c7bd2556d96147e1974a0d94976142d724b/luci.mk \
+            --output "${feed_root}/luci.mk"
+
       # Kwrt 25.12 on the target router still uses opkg. The final OpenWrt
       # 24.10 SDK produces IPK packages and keeps LuCI .ut templates as source,
       # avoiding ucode bytecode compatibility issues across release branches.
@@ -53,7 +64,7 @@ jobs:
         env:
           ARCH: x86_64-24.10.5
           CONTAINER: docker.io/openwrt/sdk
-          FEED_DIR: ${{ github.workspace }}/..
+          FEED_DIR: ${{ runner.temp }}/kdesign-feed
           PACKAGES: luci-theme-kdesign
           V: s
 

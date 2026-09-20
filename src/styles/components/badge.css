@@ -1,0 +1,5 @@
+.label, .badge, header [data-indicator] { display: inline-flex; min-height: 1.375rem; align-items: center; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-secondary); padding: 0 var(--space-2); color: var(--foreground-secondary); font-size: var(--font-size-caption); font-weight: 500; line-height: 1; white-space: nowrap; }
+.label.success, .badge.success { border-color: color-mix(in srgb, var(--success) 30%, var(--border)); background: var(--success-surface); color: var(--success); }
+.label.warning, .badge.warning { border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); background: var(--warning-surface); color: var(--warning); }
+.label.important, .label.error, .badge.error { border-color: color-mix(in srgb, var(--danger) 30%, var(--border)); background: var(--danger-surface); color: var(--danger); }
+.label.notice, .badge.info, header [data-indicator][data-style='active'] { border-color: color-mix(in srgb, var(--info) 30%, var(--border)); background: var(--info-surface); color: var(--info); }

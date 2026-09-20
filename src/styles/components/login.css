@@ -1,0 +1,13 @@
+.kdesign-login-body { display: grid; min-height: 100vh; place-items: center; padding: var(--space-6); background: var(--background); }
+.kdesign-login { width: min(100%, 25rem); }
+.kdesign-login-brand { display: flex; align-items: center; justify-content: center; gap: var(--space-3); margin-bottom: var(--space-6); }
+.kdesign-login-brand img { width: 2.25rem; height: 2.25rem; }
+.kdesign-login-card { border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--surface); padding: var(--space-6); }
+.kdesign-login-card h1 { margin-bottom: var(--space-2); font-size: var(--font-size-page); text-align: center; }
+.kdesign-login-intro { margin-bottom: var(--space-6); color: var(--muted-foreground); font-size: var(--font-size-secondary); text-align: center; }
+.kdesign-login-fields { display: grid; gap: var(--space-4); }
+.kdesign-login-field { display: grid; gap: var(--space-2); }
+.kdesign-login-field label { color: var(--foreground-secondary); font-size: var(--font-size-secondary); font-weight: 500; }
+.kdesign-login-field input, .kdesign-login-submit { width: 100%; }
+.kdesign-login-submit { margin-top: var(--space-2); }
+.kdesign-login-meta { margin: var(--space-4) 0 0; color: var(--muted-foreground); font-size: var(--font-size-caption); text-align: center; }

@@ -1,0 +1,53 @@
+[data-page='admin-status-overview'] #view {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  align-items: start;
+  gap: var(--space-4);
+}
+
+[data-page='admin-status-overview'] #view > .cbi-section {
+  min-width: 0;
+  margin: 0;
+}
+
+[data-page='admin-status-overview'] #view > .cbi-section:has(.network-status-table),
+[data-page='admin-status-overview'] #view > .cbi-section:has(.assoclist) {
+  grid-column: 1 / -1;
+}
+
+[data-page='admin-status-overview'] .cbi-title h3 {
+  min-height: var(--control);
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-3);
+}
+
+[data-page='admin-status-overview'] .cbi-title .label[data-clickable='true'] {
+  min-width: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-secondary);
+  padding: var(--space-1) var(--space-2);
+  color: var(--muted-foreground);
+  font-size: var(--font-size-caption);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+[data-page='admin-status-overview'] .cbi-section > div > .table:last-child {
+  margin-bottom: 0;
+}
+
+[data-page='admin-status-overview'] .table .td:first-child {
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+[data-page='admin-status-overview'] .table .td:last-child {
+  color: var(--foreground);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 47.999rem) {
+  [data-page='admin-status-overview'] #view { grid-template-columns: minmax(0, 1fr); }
+}

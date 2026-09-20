@@ -1,0 +1,25 @@
+[data-page^='admin-network-firewall'] .cbi-map { max-width: none; }
+
+[data-page^='admin-network-firewall'] .cbi-section-table .td { vertical-align: top; }
+[data-page^='admin-network-firewall'] .cbi-section-table .td[data-name='_match'] { min-width: 20rem; line-height: 1.55; }
+[data-page^='admin-network-firewall'] .cbi-section-table .td[data-name='_target'] { min-width: 9rem; }
+[data-page^='admin-network-firewall'] .cbi-section-table var { color: var(--foreground); font-family: var(--font-mono); font-size: var(--font-size-caption); font-style: normal; }
+
+[data-page^='admin-network-firewall'] .cbi-section-table-row[data-sid] > .td:first-child {
+  box-shadow: inset 2px 0 0 var(--border-strong);
+}
+
+[data-page^='admin-network-firewall'] .cbi-section-table-row[data-sid]:has(input[type='checkbox']:not(:checked)) {
+  opacity: .66;
+}
+
+[data-page^='admin-network-firewall'] .cbi-section-table-row[data-sid]:has(input[type='checkbox']:focus-visible) {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+
+[data-page^='admin-network-firewall'] .zonebadge { margin-block: var(--space-1); }
+
+@media (max-width: 47.999rem) {
+  [data-page^='admin-network-firewall'] .cbi-section-table { min-width: 54rem; }
+}

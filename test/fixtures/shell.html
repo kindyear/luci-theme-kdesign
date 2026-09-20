@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-theme-preference="system">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KDesign shell fixture</title>
+  <script src="../../htdocs/luci-static/kdesign/theme.js"></script>
+  <link rel="stylesheet" href="../../htdocs/luci-static/kdesign/cascade.css">
+</head>
+<body data-media="../../htdocs/luci-static/kdesign">
+<div class="kdesign-shell">
+  <aside class="kdesign-sidebar">
+    <a class="kdesign-brand" href="#"><img class="kdesign-brand-mark" src="../../htdocs/luci-static/kdesign/logo.svg" alt=""><span class="kdesign-brand-copy"><span class="kdesign-brand-name">KDesign</span><span class="kdesign-brand-host">OpenWrt-Test-Router-With-A-Long-Name</span></span></a>
+    <nav class="kdesign-sidebar-nav"><ul id="topmenu">
+      <li class="dropdown active"><a href="#"><img class="kdesign-menu-icon" src="../../htdocs/luci-static/kdesign/icons/activity.svg" alt="">Status</a><ul class="dropdown-menu"><li class="active"><a aria-current="page" href="#">Overview</a></li><li><a href="#">Realtime Graphs</a></li></ul></li>
+      <li class="dropdown"><a href="#"><img class="kdesign-menu-icon" src="../../htdocs/luci-static/kdesign/icons/network.svg" alt="">Network</a><ul class="dropdown-menu"><li><a href="#">Interfaces</a></li><li><a href="#">Wireless</a></li><li><a href="#">Firewall</a></li></ul></li>
+      <li class="dropdown"><a href="#"><img class="kdesign-menu-icon" src="../../htdocs/luci-static/kdesign/icons/settings.svg" alt="">System</a><ul class="dropdown-menu"><li><a href="#">System</a></li><li><a href="#">Software</a></li></ul></li>
+    </ul></nav>
+    <div class="kdesign-sidebar-footer"><button class="kdesign-sidebar-action" data-kdesign-appearance data-label-system="System appearance" data-label-light="Light appearance" data-label-dark="Dark appearance"><img src="../../htdocs/luci-static/kdesign/icons/monitor.svg" alt=""><span data-kdesign-appearance-label>System appearance</span></button><a class="kdesign-sidebar-action" href="#"><img src="../../htdocs/luci-static/kdesign/icons/log-out.svg" alt="">Log out</a></div>
+  </aside>
+  <button class="kdesign-sidebar-overlay" data-kdesign-sidebar-overlay hidden aria-label="Close navigation"></button>
+  <div class="kdesign-workspace">
+    <header class="kdesign-page-header"><button class="kdesign-menu-toggle" data-kdesign-menu-toggle aria-expanded="false"><img src="../../htdocs/luci-static/kdesign/icons/menu.svg" alt=""></button><div class="kdesign-page-heading"><p class="kdesign-breadcrumb">LuCI / OpenWrt-Test-Router</p><h1 class="kdesign-page-title">Interfaces</h1></div><div id="indicators"><span>Changes pending</span></div></header>
+    <main class="kdesign-main kdesign-content">
+      <div class="alert-message warning"><h4>No password set!</h4><p>Configure a root password to protect this device.</p></div>
+      <div id="tabmenu"><ul class="tabs"><li class="active"><a href="#">General Settings</a></li><li><a href="#">Advanced Settings</a></li><li><a href="#">Physical Settings</a></li></ul></div>
+      <form class="cbi-map"><h2>Interface configuration</h2><p class="cbi-map-descr">Configure protocol, addressing, and device options.</p>
+        <section class="cbi-section"><h3>General settings</h3><div class="cbi-section-node">
+          <div class="cbi-value"><label class="cbi-value-title" for="proto">Protocol</label><div class="cbi-value-field"><select id="proto"><option>Static address</option><option>DHCP client</option></select><span class="cbi-value-description">Select how this interface obtains its address.</span></div></div>
+          <div class="cbi-value"><label class="cbi-value-title" for="address">IPv4 address</label><div class="cbi-value-field"><input id="address" type="text" value="192.168.1.1"></div></div>
+          <div class="cbi-value"><label class="cbi-value-title" for="disabled">Disabled input</label><div class="cbi-value-field"><input id="disabled" type="text" value="Unavailable" disabled></div></div>
+        </div></section>
+        <div class="cbi-page-actions"><button class="cbi-button cbi-button-reset" type="button">Reset</button><button class="cbi-button cbi-button-save" type="button">Save</button><button class="cbi-button cbi-button-apply" type="button">Save & Apply</button></div>
+      </form>
+    </main>
+    <footer class="kdesign-footer"><span>LuCI development fixture / OpenWrt</span><span>KDesign</span></footer>
+  </div>
+</div>
+</body>
+</html>

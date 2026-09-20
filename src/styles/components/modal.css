@@ -1,0 +1,8 @@
+#modal_overlay { position: fixed; inset: 0; z-index: 900; overflow: auto; background: var(--overlay); opacity: 0; visibility: hidden; transition: opacity var(--transition-fast), visibility var(--transition-fast); }
+body.modal-overlay-active { height: 100vh; overflow: hidden; }
+body.modal-overlay-active #modal_overlay { opacity: 1; visibility: visible; }
+#modal_overlay > .modal, .modal-dialog { width: min(calc(100% - 2rem), 40rem); min-width: 17rem; max-height: calc(100vh - 4rem); margin: 2rem auto; overflow: auto; border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--surface); box-shadow: var(--shadow-popover); padding: var(--space-5); color: var(--foreground); }
+#modal_overlay > .modal.uci-dialog, #modal_overlay > .modal.cbi-modal { max-width: 56rem; }
+.modal > h4:first-child { margin: 0 0 var(--space-4); font-size: var(--font-size-section); }
+.modal > pre, .modal > textarea { width: 100%; overflow: auto; white-space: pre-wrap; }
+.modal > .button-row, .modal > .right { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-5); border-top: 1px solid var(--border); padding-top: var(--space-4); }

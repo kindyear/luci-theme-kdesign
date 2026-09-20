@@ -1,0 +1,9 @@
+input[type='text'], input[type='password'], input[type='email'], input[type='url'], input[type='search'], input[type='tel'], input[type='number'], input[type='date'], input[type='time'], textarea, .cbi-input-text { width: min(100%, 32rem); min-height: var(--control); border: 1px solid var(--border-strong); border-radius: var(--radius-md); outline: 0; background: var(--input); padding: 0 var(--space-3); color: var(--foreground); font-size: var(--font-size-body); transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast); }
+textarea { min-height: 6rem; padding-block: var(--space-2); resize: vertical; }
+input:hover, textarea:hover { border-color: var(--foreground-secondary); }
+input:focus, textarea:focus, input:focus-visible, textarea:focus-visible { border-color: var(--foreground); box-shadow: 0 0 0 3px var(--ring); }
+input:disabled, textarea:disabled, input[readonly], textarea[readonly] { background: var(--surface-secondary); color: var(--disabled-foreground); cursor: not-allowed; }
+input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown), .cbi-input-invalid { border-color: var(--danger); }
+input::placeholder, textarea::placeholder { color: var(--muted-foreground); opacity: 1; }
+input[type='file'] { max-width: 100%; color: var(--muted-foreground); font-size: var(--font-size-secondary); }
+input[type='file']::file-selector-button { min-height: var(--control-sm); margin-right: var(--space-3); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface); padding: 0 var(--space-3); color: var(--foreground); font: inherit; font-weight: 500; cursor: pointer; }

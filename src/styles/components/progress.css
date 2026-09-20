@@ -1,0 +1,8 @@
+.cbi-progressbar, progress { position: relative; width: 100%; min-width: 10rem; height: .5rem; border: 0; border-radius: 999px; background: var(--surface-secondary); }
+progress { overflow: hidden; }
+.cbi-progressbar { margin: 1.75rem 0 var(--space-2); border: 1px solid var(--border); overflow: visible; }
+.cbi-progressbar > div { height: 100%; border-radius: inherit; background: var(--primary); transition: width 180ms ease; }
+.cbi-progressbar::before { position: absolute; bottom: calc(100% + var(--space-1)); left: 0; overflow: hidden; max-width: 100%; color: var(--muted-foreground); content: attr(title); font-size: var(--font-size-caption); text-overflow: ellipsis; white-space: nowrap; }
+progress::-webkit-progress-bar { background: var(--surface-secondary); }
+progress::-webkit-progress-value { background: var(--primary); }
+progress::-moz-progress-bar { background: var(--primary); }

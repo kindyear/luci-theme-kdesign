@@ -1,0 +1,11 @@
+.cbi-dropdown { position: relative; display: inline-flex; min-width: 13rem; min-height: var(--control); align-items: stretch; border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--input); color: var(--foreground); cursor: pointer; }
+.cbi-dropdown:focus, .cbi-dropdown[open] { outline: 0; border-color: var(--foreground); box-shadow: 0 0 0 3px var(--ring); }
+.cbi-dropdown > ul { display: flex; width: 100%; min-width: 0; margin: 0; padding: 0; overflow: hidden; list-style: none; }
+.cbi-dropdown > ul > li { display: none; min-width: 0; flex: 1; align-items: center; overflow: hidden; padding: var(--space-2) var(--space-3); text-overflow: ellipsis; white-space: nowrap; }
+.cbi-dropdown > ul > li[display]:not([display='0']), .cbi-dropdown:not([multiple]) > ul > li:first-child { display: flex; }
+.cbi-dropdown > .open, .cbi-dropdown > .more { display: grid; flex: 0 0 2rem; place-items: center; border-left: 1px solid var(--border); color: var(--muted-foreground); }
+.cbi-dropdown[open] > ul.dropdown { position: absolute; top: calc(100% + var(--space-1)); left: 0; z-index: 1100; display: block; width: max-content; min-width: 100%; max-width: min(32rem, 90vw); max-height: 18rem; overflow-y: auto; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow-popover); padding: var(--space-1); }
+.cbi-dropdown[open] > ul.dropdown > li { display: flex; min-height: 2rem; border-radius: var(--radius-sm); padding: var(--space-2); }
+.cbi-dropdown[open] > ul.dropdown > li:hover, .cbi-dropdown[open] > ul.dropdown > li.focus { background: var(--surface-hover); }
+.cbi-dropdown[open] > ul.dropdown > li[selected] { background: var(--surface-active); font-weight: 500; }
+.cbi-dropdown[disabled] { opacity: .5; pointer-events: none; }

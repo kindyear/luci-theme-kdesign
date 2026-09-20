@@ -1,0 +1,14 @@
+#!/bin/sh
+
+changed=0
+
+if ! uci -q get luci.themes.KDesign >/dev/null 2>&1; then
+	uci set luci.themes.KDesign='/luci-static/kdesign'
+	changed=1
+fi
+
+if [ "$changed" = 1 ]; then
+	uci commit luci
+fi
+
+exit 0

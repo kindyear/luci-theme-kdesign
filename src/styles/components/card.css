@@ -1,0 +1,4 @@
+.kdesign-card { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); padding: var(--space-5); }
+.kdesign-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); align-items: start; gap: var(--space-4); }
+.kdesign-card-title { margin-bottom: var(--space-4); font-size: var(--font-size-section); }
+.kdesign-component-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }

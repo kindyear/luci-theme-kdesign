@@ -1,0 +1,26 @@
+[data-page='admin-system-package-manager'] .cbi-map,
+[data-page='admin-system-software'] .cbi-map { max-width: none; }
+
+[data-page='admin-system-package-manager'] #packages,
+[data-page='admin-system-software'] #packages { min-width: 44rem; }
+
+[data-page='admin-system-package-manager'] .controls,
+[data-page='admin-system-software'] .controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+[data-page='admin-system-package-manager'] .controls input[type='search'],
+[data-page='admin-system-software'] .controls input[type='search'] { min-width: min(100%, 20rem); flex: 1; }
+
+[data-page='admin-system-package-manager'] .package-status,
+[data-page='admin-system-software'] .package-status { color: var(--muted-foreground); font-size: var(--font-size-caption); }
+
+[data-page='admin-system-package-manager'] .td[data-name='name'],
+[data-page='admin-system-software'] .td[data-name='name'] { color: var(--foreground); font-family: var(--font-mono); font-weight: 500; }
+
+[data-page='admin-system-package-manager'] .td[data-name='description'],
+[data-page='admin-system-software'] .td[data-name='description'] { min-width: 20rem; white-space: normal; }

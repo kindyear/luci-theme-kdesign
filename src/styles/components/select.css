@@ -1,0 +1,4 @@
+select, .cbi-input-select { width: min(100%, 32rem); min-height: var(--control); border: 1px solid var(--border-strong); border-radius: var(--radius-md); outline: 0; background-color: var(--input); padding: 0 2.25rem 0 var(--space-3); color: var(--foreground); font-size: var(--font-size-body); cursor: pointer; transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
+select:hover { border-color: var(--foreground-secondary); }
+select:focus-visible { border-color: var(--foreground); box-shadow: 0 0 0 3px var(--ring); }
+select:disabled { background: var(--surface-secondary); color: var(--disabled-foreground); cursor: not-allowed; }

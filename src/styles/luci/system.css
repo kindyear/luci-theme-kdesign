@@ -1,0 +1,60 @@
+[data-page^='admin-system-'] .control-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+[data-page='admin-system-system'] #localtime { font-family: var(--font-mono); }
+
+[data-page='admin-system-admin-password'] .cbi-map,
+[data-page='admin-system-admin-pwpolicy'] .cbi-map { max-width: 52rem; }
+
+[data-page='admin-system-admin-password'] input[type='password'] { width: min(100%, 26rem); }
+
+[data-page='admin-system-startup'] .cbi-section,
+[data-page='admin-system-crontab'] .cbi-section { max-width: none; }
+
+[data-page='admin-system-startup'] .table .td:first-child {
+  width: 7rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+}
+
+[data-page='admin-system-startup'] .table .td:nth-child(2) {
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+[data-page='admin-system-startup'] .cbi-section-actions > div {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: var(--space-1);
+}
+
+[data-page='admin-system-startup'] .table .cbi-section-actions {
+  width: 30rem;
+  min-width: 30rem;
+  white-space: normal;
+}
+
+[data-page='admin-system-startup'] textarea,
+[data-page='admin-system-crontab'] textarea {
+  width: 100%;
+  min-height: 24rem;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-secondary);
+  line-height: 1.6;
+  tab-size: 2;
+}
+
+[data-page='admin-system-crontab'] .cbi-section-descr { max-width: 52rem; }
+
+@media (max-width: 47.999rem) {
+  [data-page='admin-system-startup'] .cbi-section .table { min-width: 52rem; }
+  [data-page='admin-system-startup'] textarea,
+  [data-page='admin-system-crontab'] textarea { min-height: 18rem; }
+}

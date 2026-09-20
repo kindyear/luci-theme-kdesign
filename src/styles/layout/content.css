@@ -1,0 +1,7 @@
+.kdesign-content { width: 100%; padding: clamp(var(--space-5), 3vw, var(--space-8)); }
+.kdesign-content > :first-child { margin-top: 0; }
+.kdesign-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); border-top: 1px solid var(--border); padding: var(--space-4) clamp(var(--space-4), 3vw, var(--space-8)); color: var(--muted-foreground); font-size: var(--font-size-caption); }
+#tabmenu { margin-bottom: var(--space-6); overflow-x: auto; border-bottom: 1px solid var(--border); }
+#tabmenu .tabs { display: flex; min-width: max-content; margin: 0; padding: 0; list-style: none; }
+#tabmenu .tabs a { display: block; border-bottom: 2px solid transparent; padding: var(--space-2) var(--space-3); color: var(--muted-foreground); font-size: var(--font-size-secondary); text-decoration: none; }
+#tabmenu .tabs li.active a { border-bottom-color: var(--foreground); color: var(--foreground); font-weight: 500; }

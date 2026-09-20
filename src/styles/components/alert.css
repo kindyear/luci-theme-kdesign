@@ -1,0 +1,8 @@
+.alert-message { position: relative; margin-bottom: var(--space-4); border: 1px solid color-mix(in srgb, var(--info) 35%, var(--border)); border-radius: var(--radius-md); background: var(--info-surface); padding: var(--space-3) var(--space-4); color: var(--foreground); }
+.alert-message.success { border-color: color-mix(in srgb, var(--success) 35%, var(--border)); background: var(--success-surface); }
+.alert-message.warning { border-color: color-mix(in srgb, var(--warning) 35%, var(--border)); background: var(--warning-surface); }
+.alert-message.error, .alert-message.danger { border-color: color-mix(in srgb, var(--danger) 35%, var(--border)); background: var(--danger-surface); }
+.alert-message.notice { border-color: var(--border); background: var(--surface-secondary); }
+.alert-message h4, .alert-message h5 { margin: 0 0 var(--space-1); color: inherit; }
+.alert-message p, .alert-message ul, .alert-message pre { margin: var(--space-1) 0 0; color: inherit; }
+.alert-message .close { position: absolute; top: var(--space-2); right: var(--space-2); }

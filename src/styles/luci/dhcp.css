@@ -1,0 +1,31 @@
+[data-page='admin-network-dhcp'] .cbi-map,
+[data-page='admin-network-dns'] .cbi-map { max-width: none; }
+
+[data-page='admin-network-dhcp'] #lease_status_table,
+[data-page='admin-network-dhcp'] #lease6_status_table { margin-top: var(--space-3); }
+
+[data-page='admin-network-dhcp'] #lease_status_table .td:nth-child(3),
+[data-page='admin-network-dhcp'] #lease_status_table .td:nth-child(4),
+[data-page='admin-network-dhcp'] #lease6_status_table .td:nth-child(3),
+[data-page='admin-network-dhcp'] #lease6_status_table .td:nth-child(4),
+[data-page='admin-network-dns'] code { font-family: var(--font-mono); font-size: var(--font-size-caption); }
+
+[data-page='admin-network-dhcp'] .cbi-section-remove,
+[data-page='admin-network-dns'] .cbi-section-remove {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-3);
+}
+
+[data-page='admin-network-dhcp'] .cbi-section-table .td,
+[data-page='admin-network-dns'] .cbi-section-table .td { overflow-wrap: anywhere; }
+
+[data-page='admin-network-dhcp'] .cbi-section-table-row:has(input[type='checkbox']:not(:checked)) .td[data-name='enabled'],
+[data-page='admin-network-dns'] .cbi-section-table-row:has(input[type='checkbox']:not(:checked)) .td[data-name='enabled'] { color: var(--muted-foreground); }
+
+@media (max-width: 47.999rem) {
+  [data-page='admin-network-dhcp'] #lease_status_table,
+  [data-page='admin-network-dhcp'] #lease6_status_table,
+  [data-page='admin-network-dhcp'] .cbi-section-table,
+  [data-page='admin-network-dns'] .cbi-section-table { min-width: 50rem; }
+}

@@ -1,0 +1,14 @@
+.cbi-map { max-width: var(--content-max-form); }
+.cbi-map > h2:first-child, .cbi-map > h3:first-child { margin-bottom: var(--space-2); }
+.cbi-map-descr, .cbi-section-descr, .cbi-value-description { color: var(--muted-foreground); font-size: var(--font-size-secondary); }
+.cbi-map-descr { margin-bottom: var(--space-6); }
+.cbi-section { @apply relative; margin: 0 0 var(--space-6); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); padding: var(--space-5); }
+.cbi-section > h3, .cbi-section > legend { margin-bottom: var(--space-4); font-size: var(--font-size-section); font-weight: 600; }
+.cbi-section-node { display: grid; gap: var(--space-4); }
+.cbi-value { display: grid; grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr); gap: var(--space-4); align-items: start; }
+.cbi-value-title { padding-top: 0.45rem; color: var(--foreground-secondary); font-size: var(--font-size-secondary); font-weight: 500; }
+.cbi-value-field { min-width: 0; }
+.cbi-value-field > * + .cbi-value-description, .cbi-value-description { display: block; margin-top: var(--space-2); }
+.cbi-page-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); border-top: 1px solid var(--border); padding-top: var(--space-4); }
+.cbi-section-create, .cbi-optionals { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin-top: var(--space-4); }
+.cbi-dependency { border-left: 2px solid var(--border-strong); padding-left: var(--space-4); }

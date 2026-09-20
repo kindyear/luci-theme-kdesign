@@ -1,0 +1,133 @@
+/* Keep unavoidable third-party overrides isolated in this file. */
+.spinning::before { border-color: var(--border-strong); border-top-color: var(--foreground); }
+
+/* Common third-party LuCI applications listed in the V1 compatibility matrix. */
+[data-page='admin-services-adguardhome'] .cbi-map,
+[data-page='admin-network-sqm'] .cbi-map { max-width: 68rem; }
+
+[data-page='admin-services-adguardhome'] {
+  --success-color-high: var(--success);
+  --error-color-high: var(--danger);
+}
+
+[data-page='admin-services-adguardhome'] output {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--control-sm);
+  border-radius: 999px;
+  background: var(--surface-secondary);
+  padding: 0 var(--space-3);
+  font-size: var(--font-size-secondary);
+}
+
+[data-page='admin-services-adguardhome'] .cbi-dynlist { width: 100%; }
+
+[data-page='admin-services-upnp'] .cbi-map,
+[data-page='admin-services-ddns'] .cbi-map,
+[data-page='admin-services-samba4'] .cbi-map,
+[data-page='admin-statistics-collectd'] .cbi-map { max-width: none; }
+
+[data-page='admin-services-upnp'] #upnp_status_table .td:nth-child(2),
+[data-page='admin-services-ddns'] .cbi-section-table [data-name='_cfg_detail_ip'],
+[data-page='admin-services-samba4'] .cbi-section-table .td:nth-child(2) {
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
+[data-page='admin-services-ddns'] .cbi-section-table [data-name='_cfg_status'] {
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+[data-page='admin-services-ddns'] .cbi-section-actions > div {
+  display: inline-flex;
+  gap: var(--space-1);
+}
+
+[data-page='admin-services-samba4'] textarea {
+  width: 100%;
+  max-width: none;
+  min-height: 28rem;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-secondary);
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+[data-page='admin-network-sqm'] .cbi-value-description p {
+  margin: var(--space-2) 0 0;
+}
+
+[data-page='admin-network-sqm'] .cbi-value-description b {
+  color: var(--foreground-secondary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+[data-page='admin-statistics-graphs'] .controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+[data-page='admin-statistics-graphs'] .controls .nowrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  white-space: nowrap;
+}
+
+[data-page='admin-statistics-graphs'] .controls select { min-width: 10rem; }
+
+[data-page='admin-statistics-graphs'] [data-name='graphs'] {
+  min-width: 0;
+  margin-top: var(--space-5);
+}
+
+[data-page='admin-statistics-graphs'] [data-name='graphs'] .center {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: var(--space-4);
+}
+
+[data-page='admin-statistics-graphs'] [data-name='graphs'] img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto var(--space-4);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+[data-page='admin-statistics-graphs'] hr {
+  margin: var(--space-5) 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 47.999rem) {
+  [data-page='admin-services-upnp'] .cbi-section .table { min-width: 64rem; }
+  [data-page='admin-services-ddns'] .cbi-section .table { min-width: 58rem; }
+  [data-page='admin-services-samba4'] .cbi-section .table { min-width: 68rem; }
+  [data-page='admin-statistics-collectd'] .cbi-section .table { min-width: 42rem; }
+
+  [data-page='admin-services-samba4'] textarea { min-height: 22rem; }
+
+  [data-page='admin-statistics-graphs'] .controls,
+  [data-page='admin-statistics-graphs'] .controls .nowrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  [data-page='admin-statistics-graphs'] .controls select,
+  [data-page='admin-statistics-graphs'] .controls .cbi-button { width: 100%; }
+
+  [data-page='admin-statistics-graphs'] [data-name='graphs'] .center {
+    margin-inline: calc(var(--space-2) * -1);
+    padding: var(--space-2);
+  }
+}

@@ -1,0 +1,61 @@
+[data-page='admin-network-diagnostics'] .cbi-map { max-width: none; }
+
+[data-page='admin-network-diagnostics'] .cbi-map > .table {
+  table-layout: fixed;
+}
+
+[data-page='admin-network-diagnostics'] .cbi-map > .table .td {
+  width: 25%;
+  vertical-align: top;
+}
+
+[data-page='admin-network-diagnostics'] .cbi-map > .table input,
+[data-page='admin-network-diagnostics'] .cbi-map > .table select {
+  width: 100%;
+}
+
+[data-page='admin-network-diagnostics'] .diag-action {
+  display: flex;
+  margin-top: var(--space-2);
+}
+
+[data-page='admin-network-diagnostics'] .diag-action > .cbi-button,
+[data-page='admin-network-diagnostics'] .diag-action > .btn {
+  width: 100%;
+}
+
+[data-page='admin-network-diagnostics'] #command-output { overflow: hidden; }
+
+[data-page='admin-network-diagnostics'] #command-output textarea {
+  width: 100%;
+  max-width: none;
+  min-height: 25rem;
+  overflow: auto;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-secondary);
+  line-height: 1.55;
+  resize: vertical;
+}
+
+@media (max-width: 63.999rem) {
+  [data-page='admin-network-diagnostics'] .cbi-map > .table { display: block; }
+  [data-page='admin-network-diagnostics'] .cbi-map > .table .tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+  [data-page='admin-network-diagnostics'] .cbi-map > .table .td {
+    display: block;
+    width: auto;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-secondary);
+    padding: var(--space-3);
+  }
+}
+
+@media (max-width: 35.999rem) {
+  [data-page='admin-network-diagnostics'] .cbi-map > .table .tr { grid-template-columns: 1fr; }
+  [data-page='admin-network-diagnostics'] #command-output textarea { min-height: 20rem; }
+}

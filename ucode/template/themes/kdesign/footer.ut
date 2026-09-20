@@ -1,0 +1,12 @@
+{% if (!blank_page): %}
+				</main>
+				<footer class="kdesign-footer">
+					<span>LuCI {{ version.luciname }} ({{ version.luciversion }}) / {{ version.distname }} {{ version.distversion }}{% if (lua_active): %} / {{ _('Lua compatibility mode active') }}{% endif %}</span>
+					<span>KDesign</span>
+				</footer>
+			</div>
+		</div>
+		<script>L.require('menu-kdesign')</script>
+		{% endif %}
+	</body>
+</html>

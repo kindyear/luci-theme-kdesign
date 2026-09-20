@@ -1,0 +1,26 @@
+@media (max-width: 63.999rem) {
+  .kdesign-sidebar { transform: translateX(-100%); transition: transform var(--transition-fast); }
+  .kdesign-workspace { margin-left: 0; }
+  .kdesign-menu-toggle { display: inline-flex; }
+  [data-sidebar-open='true'] .kdesign-sidebar { transform: translateX(0); }
+  [data-sidebar-open='true'] .kdesign-sidebar-overlay { opacity: 1; pointer-events: auto; }
+}
+@media (max-width: 47.999rem) {
+  .kdesign-page-header { min-height: 3.75rem; padding-inline: var(--space-4); }
+  .kdesign-breadcrumb { display: none; }
+  .kdesign-page-title { font-size: var(--font-size-section); }
+  .kdesign-content { padding: var(--space-4); }
+  .cbi-section { padding: var(--space-4); overflow-x: auto; }
+  .cbi-value { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
+  .cbi-value-title { padding-top: 0; }
+  input[type='text'], input[type='password'], input[type='email'], input[type='url'], input[type='search'], input[type='tel'], input[type='number'], textarea, select, .cbi-input-text, .cbi-input-select { width: 100%; }
+  .kdesign-footer { align-items: flex-start; flex-direction: column; }
+  #modal_overlay > .modal, .modal-dialog { width: calc(100% - 1rem); max-height: calc(100vh - 1rem); margin: .5rem auto; padding: var(--space-4); }
+  .cbi-dynlist { width: 100%; }
+  .cbi-section > .table, .cbi-section-node > .table { max-width: none; }
+}
+@media (max-width: 39.999rem) {
+  #indicators { display: none; }
+  .cbi-page-actions { align-items: stretch; flex-direction: column-reverse; }
+  .cbi-page-actions .cbi-button { width: 100%; }
+}

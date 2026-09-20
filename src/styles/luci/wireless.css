@@ -1,0 +1,31 @@
+[data-page='admin-network-wireless'] .cbi-map { max-width: none; }
+
+[data-page='admin-network-wireless'] .cbi-section-table-row[data-sid^='radio'] .td {
+  background: var(--surface-secondary);
+  border-top: 1px solid var(--border-strong);
+}
+
+[data-page='admin-network-wireless'] [data-name='_badge'] { min-width: 8rem; }
+[data-page='admin-network-wireless'] [data-name='_stat'] { min-width: 16rem; line-height: 1.55; }
+[data-page='admin-network-wireless'] [data-name='_stat'] big { color: var(--foreground); font-size: var(--font-size-body); }
+[data-page='admin-network-wireless'] [data-name='_stat'] strong { font-weight: 600; }
+
+[data-page='admin-network-wireless'] [data-signal] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  white-space: nowrap;
+}
+
+[data-page='admin-network-wireless'] [data-signal] img { width: 1.5rem; height: 1.5rem; }
+[data-page='admin-network-wireless'] [data-signal='0'],
+[data-page='admin-network-wireless'] [data-signal='-1'] { color: var(--muted-foreground); }
+
+#wifi_assoclist_table .ifacebadge { background: transparent; }
+#wifi_assoclist_table .td { overflow-wrap: anywhere; }
+
+@media (max-width: 47.999rem) {
+  [data-page='admin-network-wireless'] [data-name='_stat'] { min-width: 13rem; }
+  [data-page='admin-network-wireless'] .cbi-section-table,
+  #wifi_assoclist_table { min-width: 48rem; }
+}

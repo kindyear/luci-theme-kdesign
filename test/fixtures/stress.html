@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-theme-preference="system">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KDesign LuCI stress fixtures</title>
+  <script src="../../htdocs/luci-static/kdesign/theme.js"></script>
+  <link rel="stylesheet" href="../../htdocs/luci-static/kdesign/cascade.css">
+  <style>.fixture-switcher{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}.fixture-page[hidden]{display:none}</style>
+</head>
+<body data-media="../../htdocs/luci-static/kdesign" data-page="admin-status-overview">
+<div class="kdesign-shell">
+  <aside class="kdesign-sidebar"><a class="kdesign-brand" href="?page=overview"><img class="kdesign-brand-mark" src="../../htdocs/luci-static/kdesign/logo.svg" alt=""><span class="kdesign-brand-copy"><span class="kdesign-brand-name">KDesign</span><span class="kdesign-brand-host">openwrt-regional-edge-gateway-production-ap-southeast-1-building-operations</span></span></a><nav class="kdesign-sidebar-nav"><ul id="topmenu"><li class="dropdown active"><a href="?page=overview"><img class="kdesign-menu-icon" src="../../htdocs/luci-static/kdesign/icons/activity.svg" alt="">Status</a><ul class="dropdown-menu"><li><a href="?page=overview">Overview</a></li></ul></li><li class="dropdown"><a href="?page=interfaces"><img class="kdesign-menu-icon" src="../../htdocs/luci-static/kdesign/icons/network.svg" alt="">Network</a><ul class="dropdown-menu"><li><a href="?page=interfaces">Interfaces</a></li><li><a href="?page=wireless">Wireless</a></li><li><a href="?page=dhcp">DHCP</a></li><li><a href="?page=firewall">Firewall</a></li></ul></li></ul></nav><div class="kdesign-sidebar-footer"><button class="kdesign-sidebar-action" data-kdesign-appearance data-label-system="System appearance" data-label-light="Light appearance" data-label-dark="Dark appearance"><img src="../../htdocs/luci-static/kdesign/icons/monitor.svg" alt=""><span data-kdesign-appearance-label>System appearance</span></button></div></aside>
+  <button class="kdesign-sidebar-overlay" data-kdesign-sidebar-overlay hidden aria-label="Close navigation"></button>
+  <div class="kdesign-workspace">
+    <header class="kdesign-page-header"><button class="kdesign-menu-toggle" data-kdesign-menu-toggle aria-expanded="false" aria-label="Open navigation"><img src="../../htdocs/luci-static/kdesign/icons/menu.svg" alt=""></button><div class="kdesign-page-heading"><p class="kdesign-breadcrumb">LuCI / openwrt-regional-edge-gateway-production-ap-southeast-1-building-operations</p><h1 class="kdesign-page-title">Network Configuration for Regional Edge Gateway with an Exceptionally Long Descriptive Name</h1></div></header>
+    <main id="maincontent" class="kdesign-main kdesign-content">
+      <nav class="fixture-switcher" aria-label="Stress fixtures"><a class="btn" href="?page=overview">Long text</a><a class="btn" href="?page=interfaces">Multi-WAN / VLAN</a><a class="btn" href="?page=wireless">No wireless</a><a class="btn" href="?page=dhcp">Large leases</a><a class="btn" href="?page=firewall">Large firewall</a></nav>
+
+      <div class="fixture-page" data-route="overview"><h2>Status Overview</h2><div id="view"><section class="cbi-section"><h3>System</h3><table class="table"><tr class="tr"><td class="td">Hostname</td><td class="td">openwrt-regional-edge-gateway-production-ap-southeast-1-building-operations</td></tr><tr class="tr"><td class="td">Model</td><td class="td">Custom ARM64 Network Appliance with Extended Hardware Description and Remote Management Controller</td></tr><tr class="tr"><td class="td">Firmware</td><td class="td">OpenWrt SNAPSHOT r99999-0123456789 / LuCI master 26.264.12345~0123456</td></tr></table></section><section class="cbi-section"><h3>IPv6</h3><table class="table"><tr class="tr"><td class="td">Global address</td><td class="td"><code>2001:0db8:85a3:0000:0000:8a2e:0370:7334/64</code></td></tr><tr class="tr"><td class="td">Delegated prefix</td><td class="td"><code>2001:0db8:1234:5600::/56</code></td></tr><tr class="tr"><td class="td">DNS</td><td class="td"><code>2001:4860:4860::8888, 2606:4700:4700::1111</code></td></tr></table></section></div></div>
+
+      <div class="fixture-page" data-route="interfaces" hidden><form class="cbi-map"><h2>Interfaces</h2><p class="cbi-map-descr">Multiple uplinks, policy routes, bridges and VLAN-backed local networks.</p><section class="cbi-section"><h3>Interface status</h3><div class="network-status-table"><div class="ifacebox"><div class="ifacebox-head active">WAN_PRIMARY_FIBER</div><div class="ifacebox-body"><div><span class="ifacebadge large"><span><strong>pppoe-wan-primary</strong><br>2001:db8:100:200::8a2e:370:7334/64<br>203.0.113.170/32</span></span></div><div><button class="cbi-button" type="button">Restart</button><button class="cbi-button" type="button">Stop</button></div></div></div><div class="ifacebox"><div class="ifacebox-head active">WAN_BACKUP_5G</div><div class="ifacebox-body"><div><span class="ifacebadge large"><span><strong>wwan0</strong><br>2001:db8:ffff:ffff::20/64<br>198.51.100.42/29</span></span></div><div><button class="cbi-button" type="button">Restart</button><button class="cbi-button" type="button">Stop</button></div></div></div><div class="ifacebox"><div class="ifacebox-head">VPN_CORPORATE_OVERLAY</div><div class="ifacebox-body"><div><span class="ifacebadge large"><span><strong>wg-corporate-production-overlay</strong><br>fd42:1234:5678:9abc::100/128</span></span></div><div><button class="cbi-button" type="button">Connect</button></div></div></div></div></section><section class="cbi-section"><h3>Devices and VLANs</h3><div class="table cbi-section-table" id="vlan-table"><div class="tr cbi-section-table-titles"><div class="th">Device</div><div class="th">Type</div><div class="th">VLAN ID</div><div class="th">MAC address</div><div class="th">IPv4</div><div class="th">IPv6</div><div class="th">State</div><div class="th">Actions</div></div></div></section></form></div>
+
+      <div class="fixture-page" data-route="wireless" hidden><form class="cbi-map"><h2>Wireless</h2><div class="alert-message warning"><h4>No wireless devices found</h4><p>The installed kernel does not expose any supported IEEE 802.11 radios. USB and PCIe devices may require additional firmware or kernel modules.</p></div><section class="cbi-section"><h3>Associated Stations</h3><table id="wifi_assoclist_table" class="table"><tr class="tr table-titles"><th class="th">Network</th><th class="th">MAC address</th><th class="th">Host</th><th class="th">Signal</th><th class="th">RX Rate</th><th class="th">TX Rate</th></tr><tr class="tr placeholder"><td class="td" colspan="6">No information available</td></tr></table></section></form></div>
+
+      <div class="fixture-page" data-route="dhcp" hidden><form class="cbi-map"><h2>DHCP and DNS</h2><section class="cbi-section"><h3>Active DHCPv6 Leases</h3><table id="lease6_status_table" class="table"><thead><tr class="tr table-titles"><th class="th">Interface</th><th class="th">Hostname</th><th class="th">IPv6 addresses</th><th class="th">DUID</th><th class="th">IAID</th><th class="th">Remaining time</th></tr></thead><tbody id="lease-rows"></tbody></table></section></form></div>
+
+      <div class="fixture-page" data-route="firewall" hidden><form class="cbi-map"><h2>Firewall — Traffic Rules</h2><section class="cbi-section"><h3>Traffic Rules</h3><div class="table cbi-section-table" id="firewall-table"><div class="tr cbi-section-table-titles"><div class="th">Enabled</div><div class="th">Name</div><div class="th">Match</div><div class="th">Action</div><div class="th">Counters</div><div class="th">Actions</div></div></div></section></form></div>
+    </main>
+    <footer class="kdesign-footer"><span>Phase 4 edge-case fixture</span><span>KDesign</span></footer>
+  </div>
+</div>
+<script>
+  const routes = { overview: 'admin-status-overview', interfaces: 'admin-network-network', wireless: 'admin-network-wireless', dhcp: 'admin-network-dhcp', firewall: 'admin-network-firewall-rules' };
+  const selected = new URLSearchParams(location.search).get('page') || 'overview';
+  document.body.dataset.page = routes[selected] || routes.overview;
+  document.querySelectorAll('.fixture-page').forEach((page) => { page.hidden = page.dataset.route !== selected; });
+
+  const vlanTable = document.querySelector('#vlan-table');
+  for (let i = 10; i < 42; i += 1) {
+    const row = document.createElement('div');
+    row.className = 'tr cbi-section-table-row';
+    row.innerHTML = `<div class="td">br-lan.${i}</div><div class="td">802.1q VLAN</div><div class="td">${i}</div><div class="td">02:42:ac:11:${i.toString(16).padStart(2, '0')}:01</div><div class="td">10.${i}.0.1/24</div><div class="td">2001:db8:${i.toString(16)}:100::1/64</div><div class="td"><span class="label success">Up</span></div><div class="td cbi-section-actions"><button class="cbi-button" type="button">Configure</button></div>`;
+    vlanTable.append(row);
+  }
+
+  const leaseRows = document.querySelector('#lease-rows');
+  for (let i = 1; i <= 80; i += 1) {
+    const row = document.createElement('tr');
+    row.className = 'tr';
+    row.innerHTML = `<td class="td">lan.${(i % 32) + 10}</td><td class="td">environmental-sensor-cluster-node-${String(i).padStart(3, '0')}.building-operations.internal.example</td><td class="td">2001:db8:${(i % 32 + 10).toString(16)}:100::${i.toString(16)}</td><td class="td">000100012a3b4c5d66778899${i.toString(16).padStart(4, '0')}</td><td class="td">${i.toString(16).padStart(8, '0')}</td><td class="td">11h 42m</td>`;
+    leaseRows.append(row);
+  }
+
+  const firewallTable = document.querySelector('#firewall-table');
+  for (let i = 1; i <= 100; i += 1) {
+    const row = document.createElement('div');
+    row.className = 'tr cbi-section-table-row';
+    row.dataset.sid = `rule-${i}`;
+    row.innerHTML = `<div class="td"><input type="checkbox" ${i % 7 ? 'checked' : ''} aria-label="Enable rule ${i}"></div><div class="td">Allow-Regional-Monitoring-Agent-${String(i).padStart(3, '0')}</div><div class="td" data-name="_match">IPv6-TCP<br>From <var>2001:db8:${(i % 32).toString(16)}:100::/64</var><br>To <var>2001:db8:ffff:200::${i.toString(16)}</var> port <var>${8000 + i}</var></div><div class="td" data-name="_target"><span class="label ${i % 5 ? 'success' : 'error'}">${i % 5 ? 'Accept' : 'Reject'}</span></div><div class="td">${i * 143} packets<br>${i * 4192} bytes</div><div class="td cbi-section-actions"><button class="cbi-button" type="button">Edit</button><button class="cbi-button cbi-button-remove" type="button">Delete</button></div>`;
+    firewallTable.append(row);
+  }
+</script>
+</body>
+</html>

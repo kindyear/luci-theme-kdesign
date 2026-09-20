@@ -1,0 +1,23 @@
+[data-page='admin-system-mounts'] .cbi-map,
+[data-page='admin-system-leds'] .cbi-map { max-width: none; }
+
+[data-page='admin-system-mounts'] .table .td:nth-child(2),
+[data-page='admin-system-mounts'] .table .td:nth-child(3) {
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
+[data-page='admin-system-mounts'] .cbi-section-create,
+[data-page='admin-system-mounts'] .cbi-page-actions {
+  align-items: center;
+}
+
+[data-page='admin-system-leds'] .cbi-section-table .td:first-child {
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+@media (max-width: 47.999rem) {
+  [data-page='admin-system-mounts'] .cbi-section .table { min-width: 52rem; }
+  [data-page='admin-system-leds'] .cbi-section .table { min-width: 46rem; }
+}

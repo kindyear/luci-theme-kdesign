@@ -1,0 +1,23 @@
+.kdesign-brand { display: flex; min-height: var(--header-height); align-items: center; gap: var(--space-3); border-bottom: 1px solid var(--border); padding: var(--space-3) var(--space-4); color: var(--foreground); text-decoration: none; }
+.kdesign-brand-mark { width: 2rem; height: 2rem; flex: 0 0 auto; }
+.kdesign-brand-copy { min-width: 0; }
+.kdesign-brand-name, .kdesign-brand-host { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kdesign-brand-name { font-size: var(--font-size-body); font-weight: 600; }
+.kdesign-brand-host { color: var(--muted-foreground); font-size: var(--font-size-caption); }
+.kdesign-sidebar-nav { min-height: 0; flex: 1; overflow: auto; padding: var(--space-3); }
+.kdesign-sidebar-nav ul { margin: 0; padding: 0; list-style: none; }
+.kdesign-sidebar-nav a { display: flex; min-height: 2.125rem; align-items: center; gap: var(--space-2); border-radius: var(--radius-sm); padding: 0 var(--space-3); color: var(--foreground-secondary); font-size: var(--font-size-secondary); text-decoration: none; transition: background-color var(--transition-fast), color var(--transition-fast); }
+.kdesign-sidebar-nav a:hover { background: var(--surface-hover); color: var(--foreground); }
+.kdesign-sidebar-nav a:focus-visible { outline: 2px solid var(--foreground); outline-offset: -2px; }
+.kdesign-sidebar-nav > ul > li { margin-bottom: var(--space-3); }
+.kdesign-sidebar-nav > ul > li > a { color: var(--muted-foreground); font-size: var(--font-size-caption); font-weight: 600; letter-spacing: 0.045em; text-transform: uppercase; }
+.kdesign-sidebar-nav .dropdown-menu { display: grid; gap: 2px; margin-top: var(--space-1); }
+.kdesign-sidebar-nav .dropdown-menu .dropdown-menu { margin-left: var(--space-5); }
+.kdesign-sidebar-nav li.active > a, .kdesign-sidebar-nav a[aria-current='page'] { background: var(--surface-active); color: var(--foreground); font-weight: 500; }
+.kdesign-menu-icon { width: 1rem; height: 1rem; flex: 0 0 auto; opacity: 0.72; }
+.kdesign-sidebar-footer { display: grid; gap: var(--space-1); border-top: 1px solid var(--border); padding: var(--space-3); }
+.kdesign-sidebar-action, .kdesign-mode-menu a { display: flex; width: 100%; min-height: 2.125rem; align-items: center; gap: var(--space-2); border: 0; border-radius: var(--radius-sm); background: transparent; padding: 0 var(--space-3); color: var(--foreground-secondary); font-size: var(--font-size-secondary); text-align: left; text-decoration: none; cursor: pointer; }
+.kdesign-sidebar-action:hover, .kdesign-mode-menu a:hover { background: var(--surface-hover); color: var(--foreground); }
+.kdesign-sidebar-action:focus-visible, .kdesign-mode-menu a:focus-visible { outline: 2px solid var(--foreground); outline-offset: -2px; }
+.kdesign-sidebar-action img { width: 1rem; height: 1rem; }
+.kdesign-mode-menu { margin: 0; padding: 0; list-style: none; }

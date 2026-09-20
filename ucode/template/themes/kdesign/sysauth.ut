@@ -1,0 +1,35 @@
+{#
+ Copyright 2022 Jo-Philipp Wich <jo@mein.io>
+ Copyright 2026 KDesign contributors
+ Licensed to the public under the Apache License 2.0.
+-#}
+
+{% include('header', { blank_page: true }) %}
+<main class="kdesign-login">
+	<div class="kdesign-login-brand">
+		<img src="{{ media }}/logo.svg" alt="">
+		<span class="kdesign-brand-copy"><strong class="kdesign-brand-name">OpenWrt</strong><span class="kdesign-brand-host">LuCI / KDesign</span></span>
+	</div>
+	<section class="kdesign-login-card" aria-labelledby="kdesign-login-title">
+		<h1 id="kdesign-login-title">{{ _('Sign in') }}</h1>
+		<p class="kdesign-login-intro">{{ _('Authenticate to manage this device.') }}</p>
+		{% if (auth_message): %}<div class="alert-message warning">{{ auth_message }}</div>
+		{% elif (fuser): %}<div class="alert-message error" role="alert">{{ _('Invalid username and/or password! Please try again.') }}</div>{% endif %}
+		<form method="post" class="kdesign-login-fields">
+			<div class="kdesign-login-field"><label for="luci_username">{{ _('Username') }}</label><input name="luci_username" id="luci_username" type="text" autocomplete="username" value="{{ entityencode(duser, true) }}" required></div>
+			<div class="kdesign-login-field"><label for="luci_password">{{ _('Password') }}</label><input name="luci_password" id="luci_password" type="password" autocomplete="current-password" autofocus></div>
+			{% if (auth_fields): %}
+				{% for (let field in auth_fields): %}
+				<div class="kdesign-login-field"><label for="{{ field.name }}">{{ _(field.label ?? field.name) }}</label>
+					<input name="{{ field.name }}" id="{{ field.name }}" type="{{ field.type ?? 'text' }}" {% if (field.placeholder): %}placeholder="{{ field.placeholder }}"{% endif %} {% if (field.inputmode): %}inputmode="{{ field.inputmode }}"{% endif %} {% if (field.pattern): %}pattern="{{ field.pattern }}"{% endif %} {% if (field.maxlength): %}maxlength="{{ field.maxlength }}"{% endif %} {% if (field.autocomplete): %}autocomplete="{{ field.autocomplete }}"{% endif %} {% if (field.required): %}required{% endif %}>
+				</div>
+				{% endfor %}
+			{% endif %}
+			{% if (auth_html): %}<div>{{ auth_html }}</div>{% endif %}
+			<button class="btn primary kdesign-login-submit" type="submit">{{ _('Log in') }}</button>
+		</form>
+		{% if (auth_assets): %}{% for (let asset in auth_assets): %}{% if (asset.type == 'script'): %}<script src="{{ asset.src }}"></script>{% endif %}{% endfor %}{% endif %}
+	</section>
+	<p class="kdesign-login-meta">OpenWrt · LuCI</p>
+</main>
+{% include('footer', { blank_page: true }) %}

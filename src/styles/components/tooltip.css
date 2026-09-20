@@ -1,0 +1,3 @@
+.cbi-tooltip-container, [data-tooltip] { cursor: help; }
+.cbi-tooltip { position: absolute; z-index: 1200; left: -10000px; max-width: min(22rem, calc(100vw - 2rem)); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--foreground); box-shadow: var(--shadow-popover); padding: var(--space-1) var(--space-2); color: var(--background); font-size: var(--font-size-caption); line-height: 1.4; opacity: 0; pointer-events: none; white-space: normal; transition: opacity var(--transition-fast); }
+.cbi-tooltip-container:hover .cbi-tooltip:not(:empty), .cbi-tooltip-container:focus-within .cbi-tooltip:not(:empty) { left: auto; opacity: 1; }

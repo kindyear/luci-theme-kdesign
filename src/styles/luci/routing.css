@@ -1,0 +1,20 @@
+[data-page='admin-network-routes'] .cbi-map { max-width: none; }
+
+[data-page='admin-network-routes'] .cbi-section-table .td { vertical-align: middle; }
+[data-page='admin-network-routes'] .cbi-section-table .td[data-name='target'],
+[data-page='admin-network-routes'] .cbi-section-table .td[data-name='gateway'],
+[data-page='admin-network-routes'] .cbi-section-table .td[data-name='src'],
+[data-page='admin-network-routes'] .cbi-section-table .td[data-name='dest'] {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  overflow-wrap: anywhere;
+}
+
+[data-page='admin-network-routes'] .cbi-section-table-row:has(input[data-name='disabled']:checked),
+[data-page='admin-network-routes'] .cbi-section-table-row:has(input[type='checkbox'][checked][data-disabled='true']) { opacity: .62; }
+
+[data-page='admin-network-routes'] .drag-handle { color: var(--muted-foreground); cursor: grab; }
+
+@media (max-width: 47.999rem) {
+  [data-page='admin-network-routes'] .cbi-section-table { min-width: 52rem; }
+}

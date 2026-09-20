@@ -1,0 +1,76 @@
+name: Build Kwrt IPK
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-ipk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate generated assets
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run project checks
+        run: pnpm check
+
+  build-ipk:
+    name: Build x86_64 IPK
+    needs: validate
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Kwrt 25.12 on the target router still uses opkg. The final OpenWrt
+      # 24.10 SDK produces IPK packages and keeps LuCI .ut templates as source,
+      # avoiding ucode bytecode compatibility issues across release branches.
+      - name: Build package with the OpenWrt SDK
+        uses: openwrt/gh-action-sdk@f5813d30eeef3534b58ac7e79c5d8842b6035434
+        env:
+          ARCH: x86_64-24.10.5
+          CONTAINER: docker.io/openwrt/sdk
+          PACKAGES: luci-theme-kdesign
+          V: s
+
+      - name: Verify package output
+        shell: bash
+        run: |
+          mapfile -t packages < <(find bin -type f -name 'luci-theme-kdesign_*.ipk' -print)
+          if [[ ${#packages[@]} -ne 1 ]]; then
+            printf 'Expected one luci-theme-kdesign IPK, found %s\n' "${#packages[@]}" >&2
+            find bin -maxdepth 6 -type f -print || true
+            exit 1
+          fi
+          printf 'Built package: %s\n' "${packages[0]}"
+
+      - name: Upload IPK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: luci-theme-kdesign-kwrt-x86_64-ipk
+          path: bin/packages/x86_64/action/luci-theme-kdesign_*.ipk
+          if-no-files-found: error
+          retention-days: 14

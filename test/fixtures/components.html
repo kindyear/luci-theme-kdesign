@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-theme-preference="system">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KDesign component fixture</title>
+  <script src="../../htdocs/luci-static/kdesign/theme.js"></script>
+  <link rel="stylesheet" href="../../htdocs/luci-static/kdesign/cascade.css">
+</head>
+<body data-media="../../htdocs/luci-static/kdesign">
+<main class="kdesign-content">
+  <div class="kdesign-component-row">
+    <div><h1>Component coverage</h1><p>Representative current LuCI semantic structures.</p></div>
+    <button class="btn" type="button" data-kdesign-appearance data-label-system="System appearance" data-label-light="Light appearance" data-label-dark="Dark appearance"><img src="../../htdocs/luci-static/kdesign/icons/monitor.svg" width="16" height="16" alt=""><span data-kdesign-appearance-label>System appearance</span></button>
+  </div>
+
+  <ul class="cbi-tabmenu"><li class="cbi-tab"><a href="#">General Settings</a></li><li class="cbi-tab-disabled"><a href="#">Advanced Settings</a></li><li class="cbi-tab-disabled" data-errors="2"><a href="#">Validation Errors</a></li></ul>
+
+  <div class="kdesign-card-grid">
+    <section class="kdesign-card"><h2 class="kdesign-card-title">Buttons and status</h2>
+      <div class="kdesign-component-row"><button class="btn primary">Primary</button><button class="btn">Secondary</button><button class="btn danger">Destructive</button><button class="btn" disabled>Disabled</button></div>
+      <div class="kdesign-component-row"><span class="label success">Online</span><span class="label warning">Pending</span><span class="label error">Error</span><span class="label notice">DHCP</span><span class="label">Disabled</span></div>
+    </section>
+
+    <section class="kdesign-card"><h2 class="kdesign-card-title">Native controls</h2>
+      <div class="kdesign-component-row"><label class="cbi-checkbox"><input type="checkbox" checked> Enabled</label><label class="cbi-checkbox"><input type="checkbox" disabled> Disabled</label></div>
+      <div class="kdesign-component-row"><label class="cbi-radio"><input name="mode" type="radio" checked> DHCP</label><label class="cbi-radio"><input name="mode" type="radio"> Static</label></div>
+      <div class="kdesign-component-row"><label class="kdesign-switch"><input type="checkbox" role="switch" checked> Automatic updates</label></div>
+      <input type="file" aria-label="Firmware image">
+    </section>
+
+    <section class="kdesign-card"><h2 class="kdesign-card-title">Alerts</h2>
+      <div class="alert-message"><h4>Information</h4><p>Configuration was loaded successfully.</p></div>
+      <div class="alert-message success"><h4>Connected</h4><p>The interface is online.</p></div>
+      <div class="alert-message warning"><h4>Pending changes</h4><p>Apply changes to update the device.</p></div>
+      <div class="alert-message error"><h4>Connection failed</h4><p>Check the supplied parameters.</p></div>
+    </section>
+
+    <section class="kdesign-card"><h2 class="kdesign-card-title">Dropdown and tooltip</h2>
+      <div class="cbi-dropdown" tabindex="0"><ul><li display="1">Static address</li></ul><span class="open">⌄</span></div>
+      <span class="cbi-tooltip-container" tabindex="0">Interface help<span class="cbi-tooltip">Addressing mode used by this interface.</span></span>
+      <div class="cbi-progressbar" title="64% used"><div style="width:64%"></div></div>
+    </section>
+  </div>
+
+  <section class="cbi-section"><h2>Dynamic list</h2><div class="cbi-dynlist"><div class="item"><span>1.1.1.1</span></div><div class="item"><span>2606:4700:4700::1111</span></div><div class="add-item"><input class="cbi-input-text" placeholder="Add DNS server"><button class="cbi-button cbi-button-add" type="button">Add</button></div></div></section>
+
+  <section class="cbi-section"><h2>Dense table</h2><div class="table cbi-section-table">
+    <div class="tr cbi-section-table-titles"><div class="th">Interface</div><div class="th">Protocol</div><div class="th">Address</div><div class="th">Status</div><div class="th"></div></div>
+    <div class="tr cbi-section-table-row"><div class="td">WAN</div><div class="td">DHCP</div><div class="td">203.0.113.10</div><div class="td"><span class="label success">Online</span></div><div class="td cbi-section-actions"><button class="cbi-button">Edit</button><button class="cbi-button cbi-button-remove">Delete</button></div></div>
+    <div class="tr cbi-section-table-row"><div class="td">LAN</div><div class="td">Static</div><div class="td">192.168.1.1</div><div class="td"><span class="label success">Online</span></div><div class="td cbi-section-actions"><button class="cbi-button">Edit</button><button class="cbi-button cbi-button-remove">Delete</button></div></div>
+    <div class="tr cbi-section-table-row"><div class="td">GUEST_WITH_A_LONG_INTERFACE_NAME</div><div class="td">Static</div><div class="td">2001:db8:85a3::8a2e:370:7334</div><div class="td"><span class="label">Offline</span></div><div class="td cbi-section-actions"><button class="cbi-button">Edit</button><button class="cbi-button cbi-button-remove">Delete</button></div></div>
+  </div><ul class="pagination"><li><span>Previous</span></li><li><a class="active" href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">Next</a></li></ul></section>
+
+  <button class="btn primary" id="show-modal" type="button">Open modal</button>
+</main>
+<div id="modal_overlay" tabindex="-1"><div class="modal cbi-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><h4 id="modal-title">Apply pending changes?</h4><p>The network service may restart briefly.</p><div class="button-row"><button class="btn" id="close-modal" type="button">Cancel</button><button class="btn primary" type="button">Apply</button></div></div></div>
+<script>
+  document.getElementById('show-modal').addEventListener('click', function () { document.body.classList.add('modal-overlay-active'); document.getElementById('close-modal').focus(); });
+  document.getElementById('close-modal').addEventListener('click', function () { document.body.classList.remove('modal-overlay-active'); document.getElementById('show-modal').focus(); });
+</script>
+</body>
+</html>

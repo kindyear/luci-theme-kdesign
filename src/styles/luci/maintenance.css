@@ -1,0 +1,47 @@
+[data-page='admin-system-flash'] .cbi-map { max-width: 72rem; }
+
+[data-page='admin-system-flash'] .cbi-section .cbi-section {
+  margin: var(--space-4) 0 0;
+  border-color: var(--border);
+  background: var(--surface-secondary);
+  box-shadow: none;
+}
+
+[data-page='admin-system-flash'] .cbi-section .cbi-section > h3 {
+  margin-bottom: var(--space-2);
+}
+
+[data-page='admin-system-flash'] .cbi-section .cbi-section > p {
+  max-width: 54rem;
+  color: var(--muted-foreground);
+}
+
+[data-page='admin-system-flash'] textarea {
+  width: 100%;
+  min-height: 16rem;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-secondary);
+  line-height: 1.6;
+}
+
+[data-page='admin-system-flash'] .control-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+[data-page='admin-system-reboot'] #maincontent > h2,
+[data-page='admin-system-reboot'] #maincontent > p,
+[data-page='admin-system-reboot'] #maincontent > .alert-message,
+[data-page='admin-system-reboot'] #maincontent > hr,
+[data-page='admin-system-reboot'] #maincontent > .cbi-button {
+  max-width: 52rem;
+}
+
+[data-page='admin-system-reboot'] #maincontent > hr {
+  margin: var(--space-6) 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}

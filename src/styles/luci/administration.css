@@ -1,0 +1,53 @@
+[data-page='admin-system-admin-dropbear'] .cbi-map,
+[data-page='admin-system-admin-uhttpd'] .cbi-map { max-width: 58rem; }
+
+[data-page='admin-system-admin-sshkeys'] .cbi-map { max-width: 68rem; }
+
+[data-page='admin-system-admin-sshkeys'] .cbi-dynlist {
+  width: 100%;
+  max-width: none;
+}
+
+[data-page='admin-system-admin-sshkeys'] .cbi-dynlist .item {
+  align-items: flex-start;
+  overflow-wrap: anywhere;
+}
+
+[data-page='admin-system-admin-sshkeys'] .cbi-dynlist .item code,
+[data-page='admin-system-admin-repokeys'] code {
+  color: var(--foreground-secondary);
+  font-family: var(--font-mono);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+[data-page='admin-system-admin-sshkeys'] .cbi-dynlist .add-item textarea {
+  width: 100%;
+  min-height: 7rem;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-secondary);
+}
+
+[data-page='admin-system-admin-repokeys'] .cbi-map { max-width: none; }
+
+[data-page='admin-system-admin-repokeys'] .table .td:first-child,
+[data-page='admin-system-admin-repokeys'] .table .th:first-child {
+  width: 20%;
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
+[data-page='admin-system-admin-repokeys'] .table textarea,
+[data-page='admin-system-admin-repokeys'] #key-input {
+  width: 100%;
+  max-width: none;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-secondary);
+  line-height: 1.5;
+}
+
+[data-page='admin-system-admin-repokeys'] #key-input { min-height: 8rem; }
+
+@media (max-width: 47.999rem) {
+  [data-page='admin-system-admin-repokeys'] .cbi-section .table { min-width: 44rem; }
+}

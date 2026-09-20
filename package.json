@@ -1,0 +1,26 @@
+{
+  "name": "luci-theme-kdesign",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A minimal SaaS-style network console theme for OpenWrt LuCI.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs --watch",
+    "lint": "node --check src/scripts/theme.js && node --check scripts/build.mjs && node --check scripts/icons.mjs && node --check scripts/check.mjs && node --check scripts/check-package.mjs && node --check scripts/package-source.mjs",
+    "check": "pnpm lint && pnpm build && node scripts/check.mjs && node scripts/check-package.mjs",
+    "package:source": "pnpm check && node scripts/package-source.mjs"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "chokidar": "^4.0.3",
+    "cssnano": "^7.1.1",
+    "lucide-static": "^0.544.0",
+    "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1",
+    "tailwindcss": "^3.4.17",
+    "terser": "^5.44.0"
+  },
+  "packageManager": "pnpm@11.9.0"
+}

@@ -1,0 +1,67 @@
+{#
+ Copyright 2008 Steven Barth <steven@midlink.org>
+ Copyright 2012 David Menting <david@nut-bolt.nl>
+ Copyright 2008-2025 Jo-Philipp Wich <jo@mein.io>
+ Copyright 2026 KDesign contributors
+ Licensed to the public under the Apache License 2.0.
+-#}
+
+{%
+	import { getuid, getspnam } from 'luci.core';
+	const boardinfo = ubus.call('system', 'board') ?? {};
+	const page_title = dispatched?.title ? _(dispatched.title) : _('Overview');
+	http.prepare_content('text/html; charset=UTF-8');
+-%}
+<!DOCTYPE html>
+<html lang="{{ dispatcher.lang }}" data-theme="light" data-theme-preference="system">
+	<head>
+		<meta charset="utf-8">
+		<title>{{ striptags(`${page_title} | ${boardinfo.hostname ?? '?'} | LuCI`) }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="darkreader-lock">
+		<script src="{{ media }}/theme.js"></script>
+		<link rel="stylesheet" href="{{ media }}/cascade.css">
+		<link rel="icon" href="{{ media }}/logo.svg" sizes="any" type="image/svg+xml">
+		{% if (dispatched?.css): %}<link rel="stylesheet" href="{{ resource }}/{{ dispatched.css }}">{% endif %}
+		{% if (css): %}<style title="text/css">{{ css }}</style>{% endif %}
+		<script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
+		<script src="{{ resource }}/cbi.js"></script>
+	</head>
+	<body class="lang_{{ dispatcher.lang }}{{ blank_page ? ' kdesign-login-body' : '' }}" data-page="{{ entityencode(join('-', length(ctx.request_path) ? ctx.request_path : ctx.path), true) }}" data-media="{{ media }}">
+		{% if (!blank_page): %}
+		<div class="kdesign-shell">
+			<aside class="kdesign-sidebar" aria-label="{{ _('Main navigation') }}">
+				<a class="kdesign-brand" href="{{ dispatcher.build_url('admin') }}">
+					<img class="kdesign-brand-mark" src="{{ media }}/logo.svg" alt="">
+					<span class="kdesign-brand-copy"><span class="kdesign-brand-name">KDesign</span><span class="kdesign-brand-host">{{ striptags(boardinfo.hostname ?? '?') }}</span></span>
+				</a>
+				<nav class="kdesign-sidebar-nav" aria-label="{{ _('Configuration') }}"><ul id="topmenu" style="display:none"></ul></nav>
+				<div class="kdesign-sidebar-footer">
+					<ul class="kdesign-mode-menu" id="modemenu" style="display:none"></ul>
+					<button class="kdesign-sidebar-action" type="button" data-kdesign-appearance data-label-system="{{ _('Use system appearance') }}" data-label-light="{{ _('Use light appearance') }}" data-label-dark="{{ _('Use dark appearance') }}">
+						<img src="{{ media }}/icons/monitor.svg" alt=""><span data-kdesign-appearance-label>{{ _('Use system appearance') }}</span>
+					</button>
+					<a class="kdesign-sidebar-action" href="{{ dispatcher.build_url('admin/logout') }}"><img src="{{ media }}/icons/log-out.svg" alt=""><span>{{ _('Log out') }}</span></a>
+				</div>
+			</aside>
+			<button class="kdesign-sidebar-overlay" type="button" data-kdesign-sidebar-overlay hidden aria-label="{{ _('Close navigation') }}"></button>
+			<div class="kdesign-workspace">
+				<header class="kdesign-page-header">
+					<button class="kdesign-menu-toggle" type="button" data-kdesign-menu-toggle aria-expanded="false" aria-label="{{ _('Open navigation') }}"><img src="{{ media }}/icons/menu.svg" alt=""></button>
+					<div class="kdesign-page-heading"><p class="kdesign-breadcrumb">LuCI / {{ striptags(boardinfo.hostname ?? '?') }}</p><h1 class="kdesign-page-title">{{ striptags(page_title) }}</h1></div>
+					<div id="indicators"></div>
+				</header>
+				<main id="maincontent" class="kdesign-main kdesign-content">
+					{% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
+					<div class="alert-message warning"><h4>{{ _('No password set!') }}</h4><p>{{ _('There is no password set on this router. Please configure a root password to protect the web interface.') }}</p>
+						{% if (dispatcher.lookup('admin/system/admin')): %}<div class="right"><a class="btn" href="{{ dispatcher.build_url('admin/system/admin') }}">{{ _('Go to password configuration...') }}</a></div>{% endif %}
+					</div>
+					{% endif %}
+					{% if (boardinfo.rootfs_type == 'initramfs'): %}
+					<div class="alert-message warning"><h4>{{ _('System running in recovery (initramfs) mode.') }}</h4><p>{{ _('No changes to settings will be stored and are lost after rebooting. This mode should only be used to install a firmware upgrade') }}</p>
+						{% if (dispatcher.lookup('admin/system/flash')): %}<div class="right"><a class="btn" href="{{ dispatcher.build_url('admin/system/flash') }}">{{ _('Go to firmware upgrade...') }}</a></div>{% endif %}
+					</div>
+					{% endif %}
+					<noscript><div class="alert-message warning"><h4>{{ _('JavaScript required!') }}</h4><p>{{ _('You must enable JavaScript in your browser or LuCI will not work properly.') }}</p></div></noscript>
+					<div id="tabmenu" style="display:none"></div>
+		{% endif %}

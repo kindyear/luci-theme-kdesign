@@ -91,6 +91,10 @@ assert(makefile.includes('LUCI_PKGARCH:=all'), 'Theme package must remain archit
 assert(makefile.includes('LUCI_MINIFY_CSS:=0'), 'Makefile must disable the second CSS minification pass');
 assert(makefile.includes('LUCI_MINIFY_JS:=0'), 'Makefile must disable the second JavaScript minification pass');
 assert(makefile.includes('include ../../luci.mk'), 'Makefile must use the LuCI package build framework');
+assert(
+  makefile.includes('# call BuildPackage - OpenWrt buildroot signature'),
+  'Makefile must retain the LuCI feed discovery signature'
+);
 assert(makefile.includes('uci -q delete luci.themes.KDesign'), 'postrm must remove the registered KDesign theme');
 
 assert(defaults.includes("luci.themes.KDesign='/luci-static/kdesign'"), 'UCI defaults must register the KDesign media path');

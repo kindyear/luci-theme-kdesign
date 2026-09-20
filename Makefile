@@ -23,3 +23,5 @@ define Package/luci-theme-kdesign/postrm
 endef
 
 include ../../luci.mk
+
+# call BuildPackage - OpenWrt buildroot signature

@@ -14,6 +14,12 @@ PKG_LICENSE_FILES:=LICENSE
 LUCI_MINIFY_CSS:=0
 LUCI_MINIFY_JS:=0
 
+# The repository's src/ directory contains frontend source files, not a
+# conventional Make-based LuCI backend. Prevent luci.mk from invoking
+# `make install` in PKG_BUILD_DIR merely because that directory exists.
+define Build/Compile
+endef
+
 define Package/luci-theme-kdesign/postrm
 #!/bin/sh
 [ -n "$${IPKG_INSTROOT}" ] || {

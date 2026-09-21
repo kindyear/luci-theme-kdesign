@@ -31,7 +31,8 @@ async function walk(directory) {
 
 const iconNames = [
   'activity', 'boxes', 'chevron-right', 'log-out', 'menu', 'monitor', 'moon',
-  'network', 'settings', 'shield', 'sun', 'wifi', 'x'
+  'network', 'panel-left-close', 'panel-left-open', 'settings', 'shield', 'sun',
+  'wifi', 'x'
 ];
 
 const required = [

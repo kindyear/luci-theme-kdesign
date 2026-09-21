@@ -70,8 +70,10 @@
 [data-page='admin-network-routes'] .cbi-map,
 [data-page='admin-network-dhcp'] .cbi-map { max-width: none; }
 
-[data-page='admin-network-network'] [data-name='_ifacebox'] { min-width: 9rem; }
-[data-page='admin-network-network'] [data-name='_ifacebox'] .ifacebox { width: 100%; }
+[data-page='admin-network-network'] .cbi-section-table:has(.td[data-name='_ifacebox']) { table-layout: fixed; min-width: 48rem; }
+[data-page='admin-network-network'] [data-name='_ifacebox'] { width: 18rem; }
+[data-page='admin-network-network'] [data-name='_ifacebox'] .ifacebox { width: 100%; max-width: 18rem; }
+[data-page='admin-network-network'] [data-name='_ifacebox'] .ifacebox-body { padding-block: var(--space-3); }
 [data-page='admin-network-network'] [data-name='_ifacestat'] { min-width: 16rem; line-height: 1.55; }
 [data-page='admin-network-network'] [data-name='_ifacestat'] strong { color: var(--muted-foreground); font-weight: 500; }
 

@@ -8,12 +8,28 @@
 
 {%
 	import { getuid, getspnam } from 'luci.core';
+	import { cursor } from 'uci';
 	const boardinfo = ubus.call('system', 'board') ?? {};
 	const page_title = dispatched?.title ? _(dispatched.title) : _('Overview');
+	const kdesign_uci = cursor();
+	const configured_brand_name = kdesign_uci.get_first('kdesign', 'theme', 'brand_name');
+	const configured_brand_subtitle = kdesign_uci.get_first('kdesign', 'theme', 'brand_subtitle');
+	const configured_login_title = kdesign_uci.get_first('kdesign', 'theme', 'login_title');
+	const configured_login_subtitle = kdesign_uci.get_first('kdesign', 'theme', 'login_subtitle');
+	const kdesign_brand_name = striptags(configured_brand_name || 'KDesign');
+	const kdesign_brand_subtitle = striptags(configured_brand_subtitle || boardinfo.hostname || '?');
+	const kdesign_brand_logo = striptags(kdesign_uci.get_first('kdesign', 'theme', 'brand_logo') || `${media}/logo.svg`);
+	const kdesign_footer_text = striptags(kdesign_uci.get_first('kdesign', 'theme', 'footer_text') || kdesign_brand_name);
+	const kdesign_login_title = striptags(configured_login_title || _('Log in'));
+	const kdesign_login_subtitle = striptags(configured_login_subtitle || 'LuCI / KDesign');
+	const kdesign_login_background = striptags(kdesign_uci.get_first('kdesign', 'theme', 'login_background') || '');
+	const kdesign_login_background_color = striptags(kdesign_uci.get_first('kdesign', 'theme', 'login_background_color') || '');
+	const kdesign_login_overlay = striptags(kdesign_uci.get_first('kdesign', 'theme', 'login_overlay') || '0');
+	const kdesign_sidebar_default = kdesign_uci.get_first('kdesign', 'theme', 'sidebar_collapsed') == '1';
 	http.prepare_content('text/html; charset=UTF-8');
 -%}
 <!DOCTYPE html>
-<html lang="{{ dispatcher.lang }}" data-theme="light" data-theme-preference="system">
+<html lang="{{ dispatcher.lang }}" data-theme="light" data-theme-preference="system" data-sidebar-default="{{ kdesign_sidebar_default ? 'true' : 'false' }}">
 	<head>
 		<meta charset="utf-8">
 		<title>{{ striptags(`${page_title} | ${boardinfo.hostname ?? '?'} | LuCI`) }}</title>
@@ -27,17 +43,20 @@
 		<script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
 		<script src="{{ resource }}/cbi.js"></script>
 	</head>
-	<body class="lang_{{ dispatcher.lang }}{{ blank_page ? ' kdesign-login-body' : '' }}" data-page="{{ entityencode(join('-', length(ctx.request_path) ? ctx.request_path : ctx.path), true) }}" data-media="{{ media }}">
+	<body class="lang_{{ dispatcher.lang }}{{ blank_page ? ' kdesign-login-body' : '' }}" data-page="{{ entityencode(join('-', length(ctx.request_path) ? ctx.request_path : ctx.path), true) }}" data-media="{{ media }}" data-login-background="{{ entityencode(kdesign_login_background, true) }}" data-login-background-color="{{ entityencode(kdesign_login_background_color, true) }}" data-login-overlay="{{ entityencode(kdesign_login_overlay, true) }}">
 		{% if (!blank_page): %}
 		<div class="kdesign-shell">
 			<aside class="kdesign-sidebar" aria-label="{{ _('Main navigation') }}">
 				<a class="kdesign-brand" href="{{ dispatcher.build_url('admin') }}">
-					<img class="kdesign-brand-mark" src="{{ media }}/logo.svg" alt="">
-					<span class="kdesign-brand-copy"><span class="kdesign-brand-name">KDesign</span><span class="kdesign-brand-host">{{ striptags(boardinfo.hostname ?? '?') }}</span></span>
+					<img class="kdesign-brand-mark" src="{{ entityencode(kdesign_brand_logo, true) }}" alt="">
+					<span class="kdesign-brand-copy"><span class="kdesign-brand-name">{{ kdesign_brand_name }}</span><span class="kdesign-brand-host">{{ kdesign_brand_subtitle }}</span></span>
 				</a>
 				<nav class="kdesign-sidebar-nav" aria-label="{{ _('Configuration') }}"><ul id="topmenu" style="display:none"></ul></nav>
 				<div class="kdesign-sidebar-footer">
 					<ul class="kdesign-mode-menu" id="modemenu" style="display:none"></ul>
+					<button class="kdesign-sidebar-action kdesign-sidebar-collapse" type="button" data-kdesign-sidebar-collapse data-label-collapse="{{ _('Collapse navigation') }}" data-label-expand="{{ _('Expand navigation') }}">
+						<img src="{{ media }}/icons/panel-left-close.svg" alt=""><span>{{ _('Collapse navigation') }}</span>
+					</button>
 					<button class="kdesign-sidebar-action" type="button" data-kdesign-appearance data-label-system="{{ _('Follow system') }}" data-label-light="{{ _('Light mode') }}" data-label-dark="{{ _('Dark mode') }}">
 						<img src="{{ media }}/icons/monitor.svg" alt=""><span data-kdesign-appearance-label>{{ _('Follow system') }}</span>
 					</button>

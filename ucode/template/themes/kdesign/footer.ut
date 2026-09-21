@@ -2,7 +2,7 @@
 				</main>
 				<footer class="kdesign-footer">
 					<span>LuCI {{ version.luciname }} ({{ version.luciversion }}) / {{ version.distname }} {{ version.distversion }}{% if (lua_active): %} / {{ _('Lua compatibility mode active') }}{% endif %}</span>
-					<span>KDesign</span>
+					<span>{{ kdesign_footer_text }}</span>
 				</footer>
 			</div>
 		</div>

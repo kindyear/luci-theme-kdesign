@@ -63,9 +63,9 @@ return baseclass.extend({
 			const content = [];
 			if (!level)
 				content.push(E('img', { class: 'kdesign-menu-icon', src: `${media}/icons/${this.iconFor(child.name)}.svg`, alt: '' }));
-			content.push(_(child.title));
+			content.push(E('span', { class: 'kdesign-menu-label' }, [_(child.title)]));
 			ul.appendChild(E('li', { class: `${submenu.firstElementChild ? 'dropdown ' : ''}${isActive ? 'active' : ''}`.trim() }, [
-				E('a', { href: linkUrl, 'aria-current': isActive && !submenu.firstElementChild ? 'page' : null }, content),
+				E('a', { href: linkUrl, title: _(child.title), 'aria-current': isActive && !submenu.firstElementChild ? 'page' : null }, content),
 				submenu
 			]));
 		});

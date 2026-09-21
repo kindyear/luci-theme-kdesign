@@ -2,6 +2,7 @@
   'use strict';
 
   var STORAGE_KEY = 'kdesign-appearance';
+  var SIDEBAR_STORAGE_KEY = 'kdesign-sidebar-collapsed';
   var MODES = ['system', 'light', 'dark'];
   var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -35,6 +36,19 @@
   }
 
   applyMode(storedMode());
+
+  function storedSidebarState() {
+    try {
+      var value = window.localStorage.getItem(SIDEBAR_STORAGE_KEY);
+      if (value === 'true' || value === 'false')
+        return value;
+    } catch (error) {
+      // Fall back to the administrator configured default.
+    }
+    return document.documentElement.dataset.sidebarDefault === 'true' ? 'true' : 'false';
+  }
+
+  document.documentElement.dataset.sidebarCollapsed = storedSidebarState();
 
   function initAppearance() {
     var button = document.querySelector('[data-kdesign-appearance]');
@@ -103,11 +117,93 @@
       if (event.matches)
         setOpen(false, false);
     });
+
+    var collapse = document.querySelector('[data-kdesign-sidebar-collapse]');
+    if (collapse) {
+      var collapseIcon = collapse.querySelector('img');
+      var collapseLabel = collapse.querySelector('span');
+      var media = document.body.dataset.media || '/luci-static/kdesign';
+
+      function updateCollapseButton() {
+        var collapsed = document.documentElement.dataset.sidebarCollapsed === 'true';
+        var label = collapsed ? collapse.dataset.labelExpand : collapse.dataset.labelCollapse;
+        collapse.setAttribute('aria-expanded', String(!collapsed));
+        collapse.setAttribute('aria-label', label);
+        collapse.title = label;
+        if (collapseLabel)
+          collapseLabel.textContent = label;
+        if (collapseIcon)
+          collapseIcon.src = media + '/icons/' + (collapsed ? 'panel-left-open' : 'panel-left-close') + '.svg';
+      }
+
+      collapse.addEventListener('click', function () {
+        var collapsed = document.documentElement.dataset.sidebarCollapsed !== 'true';
+        document.documentElement.dataset.sidebarCollapsed = String(collapsed);
+        try {
+          window.localStorage.setItem(SIDEBAR_STORAGE_KEY, String(collapsed));
+        } catch (error) {
+          // The current page still keeps the selected state.
+        }
+        updateCollapseButton();
+      });
+      updateCollapseButton();
+    }
+  }
+
+  function initLoginCustomization() {
+    if (!document.body.classList.contains('kdesign-login-body'))
+      return;
+
+    var color = document.body.dataset.loginBackgroundColor || '';
+    if (/^#[0-9a-f]{6}$/i.test(color))
+      document.body.style.backgroundColor = color;
+
+    var image = document.body.dataset.loginBackground || '';
+    if (image) {
+      try {
+        var resolved = new URL(image, window.location.href);
+        if (resolved.protocol === 'http:' || resolved.protocol === 'https:')
+          document.body.style.backgroundImage = 'url("' + resolved.href.replace(/["\\]/g, '\\$&') + '")';
+      } catch (error) {
+        // Ignore malformed administrator supplied URLs.
+      }
+    }
+
+    var overlay = Number(document.body.dataset.loginOverlay || 0);
+    if (Number.isFinite(overlay)) {
+      overlay = Math.max(0, Math.min(80, overlay));
+      document.body.style.setProperty('--kdesign-login-overlay', 'rgba(0, 0, 0, ' + (overlay / 100) + ')');
+    }
+  }
+
+  function removeSyscontrolCredit(root) {
+    var anchors = root.querySelectorAll ? root.querySelectorAll('a') : [];
+    anchors.forEach(function (anchor) {
+      if (anchor.hostname === 'github.com' && anchor.pathname.replace(/\/$/, '') === '/bobbyunknow' && /Dibuat oleh/.test(anchor.parentElement?.textContent || ''))
+        anchor.closest('div')?.remove();
+    });
+  }
+
+  function initCompatibilityCleanup() {
+    var main = document.querySelector('#maincontent');
+    if (!main)
+      return;
+    removeSyscontrolCredit(main);
+    new MutationObserver(function (records) {
+      records.forEach(function (record) {
+        record.addedNodes.forEach(function (node) {
+          if (node.nodeType === 1)
+            removeSyscontrolCredit(node);
+        });
+      });
+    }).observe(main, { childList: true, subtree: true });
   }
 
   function init() {
     initAppearance();
     initSidebar();
+    initLoginCustomization();
+    initCompatibilityCleanup();
     document.documentElement.classList.add('kdesign-ready');
   }
 

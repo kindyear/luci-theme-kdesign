@@ -12,6 +12,8 @@ const iconNames = [
   'monitor',
   'moon',
   'network',
+  'panel-left-close',
+  'panel-left-open',
   'settings',
   'shield',
   'sun',

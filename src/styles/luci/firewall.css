@@ -20,6 +20,19 @@
 
 [data-page^='admin-network-firewall'] .zonebadge { margin-block: var(--space-1); }
 
+/* The zones overview mixes one descriptive forwarding column with compact
+   policy controls. Keep the description useful without allowing it to absorb
+   most of a wide desktop table. */
+[data-page^='admin-network-firewall'] .cbi-section-table:has(.td[data-name='_info']) {
+  min-width: 72rem;
+  table-layout: fixed;
+}
+[data-page^='admin-network-firewall'] .td[data-name='_info'] { width: 25rem; }
+[data-page^='admin-network-firewall'] .td[data-name='input'],
+[data-page^='admin-network-firewall'] .td[data-name='output'],
+[data-page^='admin-network-firewall'] .td[data-name='forward'] { width: 13rem; }
+[data-page^='admin-network-firewall'] .td[data-name='masq'] { width: 10rem; }
+
 @media (max-width: 47.999rem) {
   [data-page^='admin-network-firewall'] .cbi-section-table { min-width: 54rem; }
 }

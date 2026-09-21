@@ -1,5 +1,7 @@
-.kdesign-login-body { display: grid; min-height: 100vh; place-items: center; padding: var(--space-6); background: var(--background); }
+.kdesign-login-body { position: relative; display: grid; min-height: 100vh; place-items: center; padding: var(--space-6); background-color: var(--background); background-position: center; background-size: cover; }
+.kdesign-login-body::before { position: fixed; inset: 0; z-index: 0; background: var(--kdesign-login-overlay, transparent); content: ''; pointer-events: none; }
 .kdesign-login { width: min(100%, 25rem); }
+.kdesign-login { position: relative; z-index: 1; }
 .kdesign-login-brand { display: flex; align-items: center; justify-content: center; gap: var(--space-3); margin-bottom: var(--space-6); }
 .kdesign-login-brand img { width: 2.25rem; height: 2.25rem; }
 .kdesign-login-card { border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--surface); padding: var(--space-6); }

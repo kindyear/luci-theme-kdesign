@@ -49,13 +49,13 @@
 				<nav class="kdesign-sidebar-nav" aria-label="{{ _('Configuration') }}"><ul id="topmenu" style="display:none"></ul></nav>
 				<div class="kdesign-sidebar-footer">
 					<ul class="kdesign-mode-menu" id="modemenu" style="display:none"></ul>
-					<button class="kdesign-sidebar-action kdesign-sidebar-collapse" type="button" data-kdesign-sidebar-collapse data-label-collapse="{{ _('Collapse navigation') }}" data-label-expand="{{ _('Expand navigation') }}">
-						<img src="{{ media }}/icons/panel-left-close.svg" alt=""><span>{{ _('Collapse navigation') }}</span>
+					<button class="kdesign-sidebar-action kdesign-sidebar-collapse" type="button" data-kdesign-sidebar-collapse data-label-collapse="折叠侧边栏" data-label-expand="展开侧边栏">
+						<img src="{{ media }}/icons/panel-left-close.svg" alt=""><span>折叠侧边栏</span>
 					</button>
 					<button class="kdesign-sidebar-action" type="button" data-kdesign-appearance data-label-system="{{ _('Follow system') }}" data-label-light="{{ _('Light mode') }}" data-label-dark="{{ _('Dark mode') }}">
 						<img src="{{ media }}/icons/monitor.svg" alt=""><span data-kdesign-appearance-label>{{ _('Follow system') }}</span>
 					</button>
-					<a class="kdesign-sidebar-action" href="{{ dispatcher.build_url('admin/logout') }}"><img src="{{ media }}/icons/log-out.svg" alt=""><span>{{ _('Log out') }}</span></a>
+					<a class="kdesign-sidebar-action kdesign-sidebar-logout" href="{{ dispatcher.build_url('admin/logout') }}"><img src="{{ media }}/icons/log-out.svg" alt=""><span>{{ _('Log out') }}</span></a>
 				</div>
 			</aside>
 			<button class="kdesign-sidebar-overlay" type="button" data-kdesign-sidebar-overlay hidden aria-label="{{ _('Close navigation') }}"></button>

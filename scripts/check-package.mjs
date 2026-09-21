@@ -30,8 +30,9 @@ async function walk(directory) {
 }
 
 const iconNames = [
-  'activity', 'boxes', 'chevron-right', 'log-out', 'menu', 'monitor', 'moon',
-  'network', 'panel-left-close', 'panel-left-open', 'settings', 'shield', 'sun',
+  'activity', 'boxes', 'cable', 'chevron-down', 'chevron-right', 'ethernet-port',
+  'house', 'layout-grid', 'log-out', 'menu', 'monitor', 'moon', 'network',
+  'panel-left-close', 'panel-left-open', 'settings', 'shield', 'sun',
   'wifi', 'x'
 ];
 
@@ -118,6 +119,12 @@ assert(sysauth.includes('{% if (auth_assets): %}'), 'Authentication template mus
 assert(menu.includes("'require baseclass'"), 'Menu adapter must use the LuCI baseclass module');
 assert(menu.includes('ui.menu.load()'), 'Menu adapter must use LuCI dynamic menu data');
 assert(!menu.includes('/admin/'), 'Menu adapter must not hardcode application routes');
+assert(menu.includes('data-kdesign-menu-drawer-toggle'), 'Menu adapter must expose drawer controls for navigation groups');
+assert(menu.includes("home: 'house'"), 'Home navigation must use a recognizable home icon');
+assert(themeJs.includes('kdesign-overview-dashboard'), 'Theme runtime must initialize the compact overview layout');
+assert(header.includes('data-label-expand="展开侧边栏"'), 'Sidebar expansion label must be Simplified Chinese');
+assert(header.includes('kdesign-sidebar-logout'), 'Logout action must retain its danger styling hook');
+assert(css.includes('.kdesign-overview-dashboard'), 'Overview dashboard styles must be present in the generated CSS');
 
 const runtime = `${css}\n${themeJs}\n${menu}`;
 assert(!/sourceMappingURL/.test(runtime), 'Generated runtime must not contain source map references');

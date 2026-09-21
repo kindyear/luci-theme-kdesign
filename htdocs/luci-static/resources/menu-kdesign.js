@@ -47,7 +47,7 @@ return baseclass.extend({
 		return ul;
 	},
 	iconFor(name) {
-		return ({ status: 'activity', network: 'network', wireless: 'wifi', firewall: 'shield', services: 'boxes', system: 'settings' })[name] || 'chevron-right';
+		return ({ home: 'house', overview: 'house', status: 'activity', network: 'network', wireless: 'wifi', firewall: 'shield', services: 'boxes', system: 'settings' })[name] || 'layout-grid';
 	},
 	renderMainMenu(tree, url, level) {
 		const ul = level ? E('ul', { class: 'dropdown-menu' }) : document.querySelector('#topmenu');
@@ -58,16 +58,39 @@ return baseclass.extend({
 		children.forEach((child) => {
 			const submenu = this.renderMainMenu(child, `${url}/${child.name}`, (level || 0) + 1);
 			const isActive = L.env.dispatchpath[1 + (level || 0)] === child.name;
+			const hasSubmenu = !!submenu.firstElementChild;
 			const firstLink = submenu.querySelector?.('a');
 			const linkUrl = firstLink?.getAttribute('href') || L.url(url, child.name);
 			const content = [];
 			if (!level)
 				content.push(E('img', { class: 'kdesign-menu-icon', src: `${media}/icons/${this.iconFor(child.name)}.svg`, alt: '' }));
 			content.push(E('span', { class: 'kdesign-menu-label' }, [_(child.title)]));
-			ul.appendChild(E('li', { class: `${submenu.firstElementChild ? 'dropdown ' : ''}${isActive ? 'active' : ''}`.trim() }, [
-				E('a', { href: linkUrl, title: _(child.title), 'aria-current': isActive && !submenu.firstElementChild ? 'page' : null }, content),
-				submenu
-			]));
+			const link = E('a', { href: linkUrl, title: _(child.title), 'aria-current': isActive && !hasSubmenu ? 'page' : null }, content);
+			const items = [];
+			if (!level && hasSubmenu) {
+				const drawerId = `kdesign-menu-${child.name}`;
+				submenu.id = drawerId;
+				submenu.dataset.title = _(child.title);
+				items.push(E('div', { class: 'kdesign-menu-section' }, [
+					link,
+					E('button', {
+						class: 'kdesign-menu-drawer-toggle',
+						type: 'button',
+						'data-kdesign-menu-drawer-toggle': '',
+						'aria-controls': drawerId,
+						'aria-expanded': isActive ? 'true' : 'false',
+						'aria-label': _('Toggle navigation section')
+					}, [E('img', { src: `${media}/icons/chevron-down.svg`, alt: '' })])
+				]));
+			}
+			else {
+				items.push(link);
+			}
+			items.push(submenu);
+			ul.appendChild(E('li', {
+				class: `${hasSubmenu ? 'dropdown ' : ''}${isActive ? 'active' : ''}`.trim(),
+				'data-menu-open': !level && hasSubmenu && isActive ? 'true' : 'false'
+			}, items));
 		});
 		ul.style.display = '';
 		return ul;

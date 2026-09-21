@@ -6,7 +6,12 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const iconNames = [
   'activity',
   'boxes',
+  'cable',
+  'chevron-down',
   'chevron-right',
+  'ethernet-port',
+  'house',
+  'layout-grid',
   'log-out',
   'menu',
   'monitor',

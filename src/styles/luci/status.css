@@ -1,14 +1,27 @@
 [data-page='admin-status-overview'] #view {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
-  align-items: start;
-  gap: var(--space-4);
+  display: block;
 }
 
 [data-page='admin-status-overview'] #view > .cbi-section {
   min-width: 0;
-  margin: 0;
+  margin: var(--space-4) 0 0;
 }
+
+[data-page='admin-status-overview'] .kdesign-overview-dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-4);
+}
+
+[data-page='admin-status-overview'] .kdesign-overview-column {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: var(--space-4);
+}
+
+[data-page='admin-status-overview'] .kdesign-overview-card { min-width: 0; margin: 0; }
 
 [data-page='admin-status-overview'] #view > .cbi-section:has(.network-status-table),
 [data-page='admin-status-overview'] #view > .cbi-section:has(.assoclist),
@@ -22,15 +35,6 @@
 [data-page='admin-status-overview'] #status_leases6,
 [data-page='admin-status-overview'] #upnp_status_table,
 [data-page='admin-status-overview'] .assoclist { min-width: 48rem; }
-
-/* The first five standard overview modules are always ordered System, CPU,
-   Memory, Storage and Ports. At wide desktop sizes arrange them as a compact
-   two-row dashboard instead of leaving a system-card-sized hole in row one. */
-@media (min-width: 90rem) {
-  [data-page='admin-status-overview'] #view { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  [data-page='admin-status-overview'] #view > .cbi-section:nth-child(1) { grid-column: span 4; grid-row: span 2; }
-  [data-page='admin-status-overview'] #view > .cbi-section:nth-child(n+2):nth-child(-n+5) { grid-column: span 4; }
-}
 
 [data-page='admin-status-overview'] .cbi-title h3 {
   min-height: var(--control);
@@ -65,6 +69,49 @@
   overflow-wrap: anywhere;
 }
 
+[data-page='admin-status-overview'] .kdesign-overview-card-ports > div[style*='display:grid'] {
+  grid-template-columns: repeat(auto-fit, minmax(8.25rem, 1fr)) !important;
+  gap: var(--space-2);
+  margin-bottom: 0 !important;
+}
+
+[data-page='admin-status-overview'] .kdesign-overview-card-ports .ifacebox {
+  width: 100%;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border-radius: var(--radius-lg);
+}
+
+[data-page='admin-status-overview'] .kdesign-overview-card-ports .ifacebox-head:first-child {
+  border-bottom: 0;
+  padding-top: var(--space-3);
+  font-size: var(--font-size-body);
+}
+
+[data-page='admin-status-overview'] .kdesign-overview-card-ports .ifacebox-body {
+  padding: var(--space-2) var(--space-3);
+  text-align: center;
+}
+
+[data-page='admin-status-overview'] .kdesign-overview-card-ports .ifacebox-body > img {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto var(--space-2);
+  opacity: .9;
+}
+
+[data-page='admin-status-overview'] .kdesign-overview-card-ports .ifacebox[data-port-connected='false'] .ifacebox-body > img { opacity: .35; }
+[data-page='admin-status-overview'] .kdesign-overview-card-ports .ifacebox[data-port-connected='true'] .ifacebox-head:first-child { color: var(--success); }
+[data-page='admin-status-overview'] .kdesign-overview-card-ports .ifacebox > .ifacebox-head.cbi-tooltip-container { border-block: 0; padding: 0 var(--space-3); }
+[data-page='admin-status-overview'] .kdesign-overview-card-ports .ifacebox > .ifacebox-body:last-child { border-top: 1px solid var(--border); background: var(--surface-secondary); color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+[data-page='admin-status-overview'] .kdesign-overview-card-ports .ifacebox > .ifacebox-body:last-child > div { text-align: center !important; }
+
+@media (max-width: 89.999rem) and (min-width: 48rem) {
+  [data-page='admin-status-overview'] .kdesign-overview-dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [data-page='admin-status-overview'] .kdesign-overview-column-system { grid-column: 1 / -1; }
+}
+
 @media (max-width: 47.999rem) {
-  [data-page='admin-status-overview'] #view { grid-template-columns: minmax(0, 1fr); }
+  [data-page='admin-status-overview'] .kdesign-overview-dashboard { grid-template-columns: minmax(0, 1fr); }
 }

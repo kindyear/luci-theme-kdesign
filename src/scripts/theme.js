@@ -106,8 +106,28 @@
     });
     overlay.addEventListener('click', function () { setOpen(false, true); });
     sidebar.addEventListener('click', function (event) {
+      var drawerToggle = event.target.closest('[data-kdesign-menu-drawer-toggle]');
+      if (drawerToggle) {
+        var item = drawerToggle.closest('.dropdown');
+        var open = item && item.dataset.menuOpen !== 'true';
+        if (item) {
+          item.dataset.menuOpen = String(open);
+          drawerToggle.setAttribute('aria-expanded', String(open));
+        }
+        return;
+      }
       if (event.target.closest('a') && window.matchMedia('(max-width: 63.999rem)').matches)
         setOpen(false, false);
+    });
+
+    sidebar.addEventListener('pointerover', function (event) {
+      if (document.documentElement.dataset.sidebarCollapsed !== 'true' || !window.matchMedia('(min-width: 64rem)').matches)
+        return;
+      var item = event.target.closest('.kdesign-sidebar-nav > ul > .dropdown');
+      if (!item || item.contains(event.relatedTarget))
+        return;
+      var rect = item.getBoundingClientRect();
+      item.style.setProperty('--kdesign-flyout-top', Math.max(8, Math.min(rect.top, window.innerHeight - 80)) + 'px');
     });
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && document.documentElement.dataset.sidebarOpen === 'true')
@@ -148,6 +168,68 @@
       });
       updateCollapseButton();
     }
+  }
+
+  function initOverviewEnhancements() {
+    if (document.body.dataset.page !== 'admin-status-overview')
+      return;
+
+    var view = document.querySelector('#view');
+    if (!view)
+      return;
+
+    function refreshIcons() {
+      var media = document.body.dataset.media || '/luci-static/kdesign';
+      view.querySelectorAll('.kdesign-overview-card-ports .ifacebox-body > img:not([data-kdesign-icon])').forEach(function (icon) {
+        var connected = /port_up/.test(icon.getAttribute('src') || '');
+        icon.src = media + '/icons/ethernet-port.svg';
+        icon.alt = '';
+        icon.dataset.kdesignIcon = 'port';
+        icon.closest('.ifacebox')?.setAttribute('data-port-connected', String(connected));
+      });
+      view.querySelectorAll('.network-status-table .ifacebadge img:not([data-kdesign-icon])').forEach(function (icon) {
+        icon.src = media + '/icons/cable.svg';
+        icon.alt = '';
+        icon.dataset.kdesignIcon = 'network';
+      });
+    }
+
+    function enhance() {
+      if (view.querySelector('.kdesign-overview-dashboard')) {
+        refreshIcons();
+        return true;
+      }
+
+      var cards = Array.from(view.children).filter(function (node) {
+        return node.classList && node.classList.contains('cbi-section');
+      });
+      if (cards.length < 5)
+        return false;
+
+      var names = ['system', 'cpu', 'memory', 'storage', 'ports'];
+      cards.slice(0, 5).forEach(function (card, index) {
+        card.classList.add('kdesign-overview-card', 'kdesign-overview-card-' + names[index]);
+      });
+
+      var dashboard = document.createElement('div');
+      dashboard.className = 'kdesign-overview-dashboard';
+      var columns = ['system', 'metrics', 'health'].map(function (name) {
+        var column = document.createElement('div');
+        column.className = 'kdesign-overview-column kdesign-overview-column-' + name;
+        dashboard.appendChild(column);
+        return column;
+      });
+      view.insertBefore(dashboard, cards[0]);
+      columns[0].appendChild(cards[0]);
+      columns[1].append(cards[1], cards[3]);
+      columns[2].append(cards[2], cards[4]);
+
+      refreshIcons();
+      return true;
+    }
+
+    enhance();
+    new MutationObserver(enhance).observe(view, { childList: true, subtree: true });
   }
 
   function initLoginCustomization() {
@@ -204,6 +286,7 @@
     initSidebar();
     initLoginCustomization();
     initCompatibilityCleanup();
+    initOverviewEnhancements();
     document.documentElement.classList.add('kdesign-ready');
   }
 

@@ -3,7 +3,8 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=KDesign SaaS Theme
+LUCI_TITLE:=KDesign 现代化 LuCI 主题
+LUCI_DESCRIPTION:=一款面向 OpenWrt LuCI 的现代化响应式主题，提供深浅色模式、折叠侧栏和常用页面布局适配。
 LUCI_DEPENDS:=+luci-base
 LUCI_PKGARCH:=all
 

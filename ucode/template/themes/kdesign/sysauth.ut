@@ -4,14 +4,22 @@
  Licensed to the public under the Apache License 2.0.
 -#}
 
+{%
+	import { cursor } from 'uci';
+	const auth_kdesign_uci = cursor();
+	const auth_brand_name = striptags(auth_kdesign_uci.get_first('kdesign', 'theme', 'brand_name') || 'KDesign');
+	const auth_brand_logo = striptags(auth_kdesign_uci.get_first('kdesign', 'theme', 'brand_logo') || `${media}/logo.svg`);
+	const auth_login_title = striptags(auth_kdesign_uci.get_first('kdesign', 'theme', 'login_title') || _('Log in'));
+	const auth_login_subtitle = striptags(auth_kdesign_uci.get_first('kdesign', 'theme', 'login_subtitle') || 'LuCI / KDesign');
+-%}
 {% include('header', { blank_page: true }) %}
 <main class="kdesign-login">
 	<div class="kdesign-login-brand">
-		<img src="{{ entityencode(kdesign_brand_logo, true) }}" alt="">
-		<span class="kdesign-brand-copy"><strong class="kdesign-brand-name">{{ kdesign_brand_name }}</strong><span class="kdesign-brand-host">{{ kdesign_login_subtitle }}</span></span>
+		<img src="{{ entityencode(auth_brand_logo, true) }}" alt="">
+		<span class="kdesign-brand-copy"><strong class="kdesign-brand-name">{{ auth_brand_name }}</strong><span class="kdesign-brand-host">{{ auth_login_subtitle }}</span></span>
 	</div>
 	<section class="kdesign-login-card" aria-labelledby="kdesign-login-title">
-		<h1 id="kdesign-login-title">{{ kdesign_login_title }}</h1>
+		<h1 id="kdesign-login-title">{{ auth_login_title }}</h1>
 		{% if (auth_message): %}<div class="alert-message warning">{{ auth_message }}</div>
 		{% elif (fuser): %}<div class="alert-message error" role="alert">{{ _('Invalid username and/or password! Please try again.') }}</div>{% endif %}
 		<form method="post" class="kdesign-login-fields">

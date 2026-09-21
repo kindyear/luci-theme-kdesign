@@ -14,14 +14,9 @@
 	const kdesign_uci = cursor();
 	const configured_brand_name = kdesign_uci.get_first('kdesign', 'theme', 'brand_name');
 	const configured_brand_subtitle = kdesign_uci.get_first('kdesign', 'theme', 'brand_subtitle');
-	const configured_login_title = kdesign_uci.get_first('kdesign', 'theme', 'login_title');
-	const configured_login_subtitle = kdesign_uci.get_first('kdesign', 'theme', 'login_subtitle');
 	const kdesign_brand_name = striptags(configured_brand_name || 'KDesign');
 	const kdesign_brand_subtitle = striptags(configured_brand_subtitle || boardinfo.hostname || '?');
 	const kdesign_brand_logo = striptags(kdesign_uci.get_first('kdesign', 'theme', 'brand_logo') || `${media}/logo.svg`);
-	const kdesign_footer_text = striptags(kdesign_uci.get_first('kdesign', 'theme', 'footer_text') || kdesign_brand_name);
-	const kdesign_login_title = striptags(configured_login_title || _('Log in'));
-	const kdesign_login_subtitle = striptags(configured_login_subtitle || 'LuCI / KDesign');
 	const kdesign_login_background = striptags(kdesign_uci.get_first('kdesign', 'theme', 'login_background') || '');
 	const kdesign_login_background_color = striptags(kdesign_uci.get_first('kdesign', 'theme', 'login_background_color') || '');
 	const kdesign_login_overlay = striptags(kdesign_uci.get_first('kdesign', 'theme', 'login_overlay') || '0');

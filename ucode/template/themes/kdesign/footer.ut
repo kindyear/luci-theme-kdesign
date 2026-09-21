@@ -1,8 +1,14 @@
+{%
+	import { cursor } from 'uci';
+	const footer_kdesign_uci = cursor();
+	const footer_brand_name = striptags(footer_kdesign_uci.get_first('kdesign', 'theme', 'brand_name') || 'KDesign');
+	const footer_text = striptags(footer_kdesign_uci.get_first('kdesign', 'theme', 'footer_text') || footer_brand_name);
+-%}
 {% if (!blank_page): %}
 				</main>
 				<footer class="kdesign-footer">
 					<span>LuCI {{ version.luciname }} ({{ version.luciversion }}) / {{ version.distname }} {{ version.distversion }}{% if (lua_active): %} / {{ _('Lua compatibility mode active') }}{% endif %}</span>
-					<span>{{ kdesign_footer_text }}</span>
+					<span>{{ footer_text }}</span>
 				</footer>
 			</div>
 		</div>

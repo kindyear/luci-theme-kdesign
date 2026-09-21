@@ -28,6 +28,9 @@ for (const [label, pattern] of forbidden) {
 for (const file of Object.values(files))
   await stat(file);
 
+if (!css.includes('[data-tab-title]') || !css.includes('[data-tab-active=true]'))
+  throw new Error('Generated CSS is missing LuCI tab panel visibility rules');
+
 const cssGzip = gzipSync(css).byteLength;
 const jsGzip = gzipSync(`${js}\n${menu}`).byteLength;
 

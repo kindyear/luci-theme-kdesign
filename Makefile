@@ -14,6 +14,16 @@ PKG_LICENSE_FILES:=LICENSE
 LUCI_MINIFY_CSS:=0
 LUCI_MINIFY_JS:=0
 
+define Package/luci-theme-kdesign/postinst
+#!/bin/sh
+[ -n "$${IPKG_INSTROOT}" ] || {
+	# Recent LuCI exposes the repository-key view for both apk and opkg. Some
+	# opkg-based vendor images omit the otherwise empty key directory, causing
+	# the view's fs.list() call to fail with NotFoundError.
+	command -v opkg >/dev/null 2>&1 && mkdir -p /etc/opkg/keys
+}
+endef
+
 define Package/luci-theme-kdesign/postrm
 #!/bin/sh
 [ -n "$${IPKG_INSTROOT}" ] || {

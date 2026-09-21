@@ -1,6 +1,8 @@
 [data-page='admin-system-flash'] .cbi-map { max-width: 72rem; }
 
 [data-page='admin-system-flash'] .cbi-section .cbi-section {
+  width: 100%;
+  min-width: 0;
   margin: var(--space-4) 0 0;
   border-color: var(--border);
   background: var(--surface-secondary);
@@ -22,6 +24,10 @@
   font-family: var(--font-mono);
   font-size: var(--font-size-secondary);
   line-height: 1.6;
+}
+
+[data-page='admin-system-flash'] .cbi-value > .cbi-section > .cbi-section-node {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 [data-page='admin-system-flash'] .control-group {

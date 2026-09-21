@@ -9,6 +9,20 @@
 .cbi-value-title { padding-top: 0.45rem; color: var(--foreground-secondary); font-size: var(--font-size-secondary); font-weight: 500; }
 .cbi-value-field { min-width: 0; }
 .cbi-value-field > * + .cbi-value-description, .cbi-value-description { display: block; margin-top: var(--space-2); }
+.cbi-value > .cbi-section, .cbi-value > .cbi-tblsection { grid-column: 1 / -1; width: 100%; min-width: 0; }
+
+/* Legacy CBI TextValue controls are emitted directly below .cbi-value instead
+   of inside .cbi-value-field. Keep those editors and their help text out of
+   the label column used by modern form widgets. */
+.cbi-value:has(> textarea) { grid-template-columns: minmax(0, 1fr); }
+.cbi-value > textarea { width: 100%; max-width: none; min-width: 0; }
+.cbi-value:has(> textarea) > br,
+.cbi-value:has(> textarea) > .cbi-value-description { grid-column: 1 / -1; }
+
+/* Tables rendered by legacy and third-party views must scroll inside their
+   card instead of overflowing into the following card or page column. */
+.cbi-section:has(> .table),
+.cbi-section:has(> .cbi-section-node > .table) { overflow-x: auto; }
 .cbi-page-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); border-top: 1px solid var(--border); padding-top: var(--space-4); }
 .cbi-section-create, .cbi-optionals { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin-top: var(--space-4); }
 .cbi-dependency { border-left: 2px solid var(--border-strong); padding-left: var(--space-4); }

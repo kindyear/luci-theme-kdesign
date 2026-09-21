@@ -6,3 +6,9 @@
 .cbi-tabmenu > li > a:focus-visible { border-radius: var(--radius-sm); outline: 2px solid var(--ring); outline-offset: -2px; }
 .cbi-tab-disabled[data-errors]::after { display: inline-grid; min-width: 1.125rem; height: 1.125rem; margin-right: var(--space-1); place-items: center; border-radius: 999px; background: var(--danger); color: #fff; content: attr(data-errors); font-size: .6875rem; font-weight: 600; }
 .cbi-tab-descr { margin: calc(var(--space-3) * -1) 0 var(--space-5); color: var(--muted-foreground); font-size: var(--font-size-secondary); }
+
+/* LuCI's tab controller only changes data-tab-active. The theme must own the
+   corresponding panel visibility; without this rule every tab pane is laid
+   out at once even though the active tab marker changes correctly. */
+[data-tab-title] { height: 0; overflow: hidden; opacity: 0; }
+[data-tab-active='true'] { height: auto; overflow: visible; opacity: 1; transition: opacity var(--transition-fast); }

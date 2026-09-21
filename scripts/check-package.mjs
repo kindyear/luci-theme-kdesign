@@ -90,6 +90,7 @@ assert(makefile.includes('LUCI_DEPENDS:=+luci-base'), 'Makefile must depend on l
 assert(makefile.includes('LUCI_PKGARCH:=all'), 'Theme package must remain architecture-independent');
 assert(makefile.includes('LUCI_MINIFY_CSS:=0'), 'Makefile must disable the second CSS minification pass');
 assert(makefile.includes('LUCI_MINIFY_JS:=0'), 'Makefile must disable the second JavaScript minification pass');
+assert(makefile.includes('mkdir -p /etc/opkg/keys'), 'postinst must support LuCI repository keys on opkg images');
 assert(makefile.includes('include ../../luci.mk'), 'Makefile must use the LuCI package build framework');
 assert(
   makefile.includes('# call BuildPackage - OpenWrt buildroot signature'),

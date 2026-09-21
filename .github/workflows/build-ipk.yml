@@ -51,7 +51,9 @@ jobs:
           feed_root="${RUNNER_TEMP}/kdesign-feed"
           package_root="${feed_root}/luci-theme-kdesign"
           mkdir -p "${package_root}"
-          git archive --format=tar HEAD | tar -xf - -C "${package_root}"
+          git archive --format=tar HEAD -- \
+            Makefile LICENSE htdocs root ucode \
+            | tar -xf - -C "${package_root}"
           sed -i 's#include ../../luci.mk#include ../luci.mk#' "${package_root}/Makefile"
           curl --fail --silent --show-error --location \
             https://raw.githubusercontent.com/openwrt/luci/0aa55c7bd2556d96147e1974a0d94976142d724b/luci.mk \

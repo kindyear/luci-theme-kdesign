@@ -38,8 +38,8 @@
 				<nav class="kdesign-sidebar-nav" aria-label="{{ _('Configuration') }}"><ul id="topmenu" style="display:none"></ul></nav>
 				<div class="kdesign-sidebar-footer">
 					<ul class="kdesign-mode-menu" id="modemenu" style="display:none"></ul>
-					<button class="kdesign-sidebar-action" type="button" data-kdesign-appearance data-label-system="{{ _('Use system appearance') }}" data-label-light="{{ _('Use light appearance') }}" data-label-dark="{{ _('Use dark appearance') }}">
-						<img src="{{ media }}/icons/monitor.svg" alt=""><span data-kdesign-appearance-label>{{ _('Use system appearance') }}</span>
+					<button class="kdesign-sidebar-action" type="button" data-kdesign-appearance data-label-system="{{ _('Follow system') }}" data-label-light="{{ _('Light mode') }}" data-label-dark="{{ _('Dark mode') }}">
+						<img src="{{ media }}/icons/monitor.svg" alt=""><span data-kdesign-appearance-label>{{ _('Follow system') }}</span>
 					</button>
 					<a class="kdesign-sidebar-action" href="{{ dispatcher.build_url('admin/logout') }}"><img src="{{ media }}/icons/log-out.svg" alt=""><span>{{ _('Log out') }}</span></a>
 				</div>

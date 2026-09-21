@@ -11,8 +11,7 @@
 		<span class="kdesign-brand-copy"><strong class="kdesign-brand-name">OpenWrt</strong><span class="kdesign-brand-host">LuCI / KDesign</span></span>
 	</div>
 	<section class="kdesign-login-card" aria-labelledby="kdesign-login-title">
-		<h1 id="kdesign-login-title">{{ _('Sign in') }}</h1>
-		<p class="kdesign-login-intro">{{ _('Authenticate to manage this device.') }}</p>
+		<h1 id="kdesign-login-title">{{ _('Log in') }}</h1>
 		{% if (auth_message): %}<div class="alert-message warning">{{ auth_message }}</div>
 		{% elif (fuser): %}<div class="alert-message error" role="alert">{{ _('Invalid username and/or password! Please try again.') }}</div>{% endif %}
 		<form method="post" class="kdesign-login-fields">

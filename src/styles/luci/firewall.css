@@ -24,14 +24,14 @@
    policy controls. Keep the description useful without allowing it to absorb
    most of a wide desktop table. */
 [data-page^='admin-network-firewall'] .cbi-section-table:has(.td[data-name='_info']) {
-  min-width: 72rem;
+  min-width: 80rem;
   table-layout: fixed;
 }
-[data-page^='admin-network-firewall'] .td[data-name='_info'] { width: 25rem; }
-[data-page^='admin-network-firewall'] .td[data-name='input'],
-[data-page^='admin-network-firewall'] .td[data-name='output'],
-[data-page^='admin-network-firewall'] .td[data-name='forward'] { width: 13rem; }
-[data-page^='admin-network-firewall'] .td[data-name='masq'] { width: 10rem; }
+[data-page^='admin-network-firewall'] .cbi-section-table:has(.td[data-name='_info']) .tr > :nth-child(1) { width: 24rem; }
+[data-page^='admin-network-firewall'] .cbi-section-table:has(.td[data-name='_info']) .tr > :nth-child(2),
+[data-page^='admin-network-firewall'] .cbi-section-table:has(.td[data-name='_info']) .tr > :nth-child(3),
+[data-page^='admin-network-firewall'] .cbi-section-table:has(.td[data-name='_info']) .tr > :nth-child(4) { width: 12rem; }
+[data-page^='admin-network-firewall'] .cbi-section-table:has(.td[data-name='_info']) .tr > :nth-child(5) { width: 9rem; }
 
 @media (max-width: 47.999rem) {
   [data-page^='admin-network-firewall'] .cbi-section-table { min-width: 54rem; }

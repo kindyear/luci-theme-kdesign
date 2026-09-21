@@ -15,11 +15,23 @@ KDesign 是一套面向 OpenWrt LuCI 的现代化响应式主题。它保留 LuC
 
 ## 界面截图
 
-下列截图来自实际 Kwrt/OpenWrt 路由器环境，主机名、地址、固件标识和设备信息已脱敏。
+下列截图来自实际 Kwrt/OpenWrt 路由器环境。
 
-![KDesign 概览页面](docs/screenshots/overview.png)
+### 桌面端概览
 
-![KDesign 主题设置](docs/screenshots/settings.png)
+![KDesign 桌面端概览页面](docs/screenshots/overview.jpg)
+
+### 折叠侧栏与悬浮菜单
+
+![KDesign 折叠侧栏与悬浮菜单](docs/screenshots/sidenav.jpg)
+
+### 移动端抽屉
+
+![KDesign 移动端抽屉](docs/screenshots/mobile.jpg)
+
+### 登录页面
+
+![KDesign 登录页面](docs/screenshots/login.jpg)
 
 ## 配套设置插件
 

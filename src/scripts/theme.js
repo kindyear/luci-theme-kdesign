@@ -87,6 +87,7 @@
     var toggle = document.querySelector('[data-kdesign-menu-toggle]');
     var overlay = document.querySelector('[data-kdesign-sidebar-overlay]');
     var sidebar = document.querySelector('.kdesign-sidebar');
+    var flyoutCloseTimer = null;
     if (!toggle || !overlay || !sidebar)
       return;
 
@@ -126,8 +127,26 @@
       var item = event.target.closest('.kdesign-sidebar-nav > ul > .dropdown');
       if (!item || item.contains(event.relatedTarget))
         return;
+      window.clearTimeout(flyoutCloseTimer);
+      sidebar.querySelectorAll('[data-flyout-open="true"]').forEach(function (openItem) {
+        if (openItem !== item)
+          delete openItem.dataset.flyoutOpen;
+      });
+      item.dataset.flyoutOpen = 'true';
       var rect = item.getBoundingClientRect();
       item.style.setProperty('--kdesign-flyout-top', Math.max(8, Math.min(rect.top, window.innerHeight - 80)) + 'px');
+    });
+    sidebar.addEventListener('pointerout', function (event) {
+      if (document.documentElement.dataset.sidebarCollapsed !== 'true')
+        return;
+      var item = event.target.closest('.kdesign-sidebar-nav > ul > .dropdown');
+      if (!item || (event.relatedTarget && item.contains(event.relatedTarget)))
+        return;
+      window.clearTimeout(flyoutCloseTimer);
+      flyoutCloseTimer = window.setTimeout(function () {
+        if (!item.matches(':hover'))
+          delete item.dataset.flyoutOpen;
+      }, 180);
     });
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && document.documentElement.dataset.sidebarOpen === 'true')
@@ -159,6 +178,8 @@
       collapse.addEventListener('click', function () {
         var collapsed = document.documentElement.dataset.sidebarCollapsed !== 'true';
         document.documentElement.dataset.sidebarCollapsed = String(collapsed);
+        if (!collapsed)
+          sidebar.querySelectorAll('[data-flyout-open]').forEach(function (item) { delete item.dataset.flyoutOpen; });
         try {
           window.localStorage.setItem(SIDEBAR_STORAGE_KEY, String(collapsed));
         } catch (error) {
@@ -241,6 +262,8 @@
       document.body.style.backgroundColor = color;
 
     var image = document.body.dataset.loginBackground || '';
+    if (image && document.body.dataset.loginBackgroundSource === 'bing')
+      image += (image.indexOf('?') === -1 ? '?' : '&') + 'day=' + new Date().toISOString().slice(0, 10);
     if (image) {
       try {
         var resolved = new URL(image, window.location.href);

@@ -17,7 +17,11 @@
 	const kdesign_brand_name = striptags(configured_brand_name || 'KDesign');
 	const kdesign_brand_subtitle = striptags(configured_brand_subtitle || boardinfo.hostname || '?');
 	const kdesign_brand_logo = striptags(kdesign_uci.get_first('kdesign', 'theme', 'brand_logo') || `${media}/logo.svg`);
-	const kdesign_login_background = striptags(kdesign_uci.get_first('kdesign', 'theme', 'login_background') || '');
+	const kdesign_login_background_source = striptags(kdesign_uci.get_first('kdesign', 'theme', 'background_source') || (kdesign_uci.get_first('kdesign', 'theme', 'login_background') ? 'url' : 'builtin'));
+	const kdesign_login_background_url = kdesign_login_background_source == 'upload'
+		? kdesign_uci.get_first('kdesign', 'theme', 'uploaded_background')
+		: (kdesign_login_background_source == 'bing' ? `${media}/custom/bing.jpg` : (kdesign_login_background_source == 'url' ? kdesign_uci.get_first('kdesign', 'theme', 'login_background') : ''));
+	const kdesign_login_background = striptags(kdesign_login_background_url || '');
 	const kdesign_login_background_color = striptags(kdesign_uci.get_first('kdesign', 'theme', 'login_background_color') || '');
 	const kdesign_login_overlay = striptags(kdesign_uci.get_first('kdesign', 'theme', 'login_overlay') || '0');
 	const kdesign_sidebar_default = kdesign_uci.get_first('kdesign', 'theme', 'sidebar_collapsed') == '1';
@@ -38,7 +42,7 @@
 		<script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
 		<script src="{{ resource }}/cbi.js"></script>
 	</head>
-	<body class="lang_{{ dispatcher.lang }}{{ blank_page ? ' kdesign-login-body' : '' }}" data-page="{{ entityencode(join('-', length(ctx.request_path) ? ctx.request_path : ctx.path), true) }}" data-media="{{ media }}" data-login-background="{{ entityencode(kdesign_login_background, true) }}" data-login-background-color="{{ entityencode(kdesign_login_background_color, true) }}" data-login-overlay="{{ entityencode(kdesign_login_overlay, true) }}">
+	<body class="lang_{{ dispatcher.lang }}{{ blank_page ? ' kdesign-login-body' : '' }}" data-page="{{ entityencode(join('-', length(ctx.request_path) ? ctx.request_path : ctx.path), true) }}" data-media="{{ media }}" data-login-background-source="{{ entityencode(kdesign_login_background_source, true) }}" data-login-background="{{ entityencode(kdesign_login_background, true) }}" data-login-background-color="{{ entityencode(kdesign_login_background_color, true) }}" data-login-overlay="{{ entityencode(kdesign_login_overlay, true) }}">
 		{% if (!blank_page): %}
 		<div class="kdesign-shell">
 			<aside class="kdesign-sidebar" aria-label="{{ _('Main navigation') }}">
